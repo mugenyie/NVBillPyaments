@@ -1,0 +1,28 @@
+﻿@model NVBillPayments.Shared.ViewModels.Product.QuicktellerBillerVM
+
+@{
+    ViewData["Title"] = "Billers";
+}
+<a href="/Home/Index"><< Back</a>
+<h1>@Model.name</h1>
+<hr />
+
+<form action="UserSelect" method="post">
+    <input type="text" name="CustomerField" placeholder="Enter @Model.customerfield1" value="" />
+    <br />
+    <br />
+    <br />
+
+    <label for="PaymentItems">Select: </label>
+
+    <select name="PaymentItemSelection" id="PaymentItems">
+        @foreach (var paymentItem in Model.paymentitems)
+        {
+            <option value="@paymentItem.productCode">@HtmlEncoder.Encode(paymentItem.name)</option>
+        }
+    </select>
+    <br />
+
+    <input type="submit" value="proceed >>" />
+</form>
+

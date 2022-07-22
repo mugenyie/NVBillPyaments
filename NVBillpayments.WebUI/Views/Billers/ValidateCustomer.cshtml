@@ -1,0 +1,21 @@
+﻿@model NVBillpayments.WebUI.Models.CustomerValidationResponse
+
+@if (Model != null)
+{
+    <span>Customer Name: @Model.customerName</span>
+    <br />
+    <br />
+    <span>Item: @Model.paymentItem</span>
+    <br />
+    <br />
+    <span>Phone: @Model.customerId</span>
+    <br />
+    <br />
+    <span>Amount: @Model.totalAmount</span>
+    <br />
+    <br />
+    <form method="post" action="PostPaymentAdvice">
+        <input name="Json" type="text" hidden value="@ViewBag.PaymentBody" />
+        <input type="submit" value="Make Payment" />
+    </form>
+}

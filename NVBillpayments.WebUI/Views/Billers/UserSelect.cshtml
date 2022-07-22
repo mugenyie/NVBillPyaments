@@ -1,0 +1,40 @@
+﻿@model NVBillpayments.WebUI.Models.UserSelect
+
+@{
+    ViewData["Title"] = "Payment Item";
+}
+<a href="/Home/Index"><< Back</a>
+<h1>@Model.ProductData.name</h1>
+<hr />
+<form action="ValidateCustomer" method="post">
+    <span>Acc No. </span>
+    <input type="text" name="CustomerField" value="@Model.CustomerField" />
+    <br />
+    <br />
+    <span>Selection: </span>
+    <input disabled type="text" name="ProductName" value="@Model.ProductData.name" />
+    <br />
+    <br />
+    <span>Amount: </span>
+    @if (Model.ProductData.isAmountFixed == true)
+    {
+        <input disabled type="text" name="Amount" value="@Model.ProductData.amount" />
+    }
+    else
+    {
+        <input type="text" name="Amount" value="@Model.ProductData.amount" />
+    }
+    <br />
+    <br />
+    <span>User Details:</span>
+    <br />
+    <br />
+    <input type="email" name="Email" value="@User.Identity.Name" placeholder="Email" />
+    <br />
+    <br />
+    <input type="tel" name="PhoneNumber" placeholder="PhoneNumber" />
+    <br />
+    <br />
+    <input type="hidden" name="PaymentItemSelection" value="@Model.ProductData.productCode" />
+    <input type="submit" value="Submit" />
+</form>

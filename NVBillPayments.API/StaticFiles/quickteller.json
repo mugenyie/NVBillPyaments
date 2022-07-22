@@ -1,0 +1,1868 @@
+{
+    "count": 7,
+  "categorys": [
+    {
+      "id": "1",
+      "name": "Tickets",
+      "iconUrl": "/StaticFiles/categorys/tickets.svg",
+      "description": "Tickets & Events",
+      "billers": [
+        {
+          "id": "1",
+          "categoryId": "1",
+          "name": "Bride & Groom Expo",
+          "iconUrl": "/StaticFiles/billers/bride&groom.png",
+          "customerfield1": "Name and Phone number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "1",
+              "name": "Singles - UGX 10,000",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "1"
+            },
+            {
+              "productCode": "2",
+              "name": "Couple - UGX 20,000",
+              "amount": "2000000",
+              "isAmountFixed": true,
+              "billerId": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Airtime",
+      "iconUrl": "/StaticFiles/categorys/calls.svg",
+      "description": "Airtime Payments",
+      "billers": [
+        {
+          "id": "238",
+          "categoryId": "4",
+          "name": "Airtime Top Up",
+          "iconUrl": "/StaticFiles/billers/airtime.png",
+          "customerfield1": "Phone Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "238181",
+              "name": "Airtel Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "238"
+            },
+            {
+              "productCode": "238180",
+              "name": "Mtn Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "238"
+            },
+            {
+              "productCode": "238183",
+              "name": "Africel Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "238"
+            },
+            {
+              "productCode": "238189",
+              "name": "Smile Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "238"
+            },
+            {
+              "productCode": "238185",
+              "name": "Smart Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "238"
+            },
+            {
+              "productCode": "238182",
+              "name": "UTL Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "238"
+            }
+          ]
+        },
+        {
+          "id": "252",
+          "categoryId": "4",
+          "name": "UTL AVS",
+          "iconUrl": "/StaticFiles/billers/utl.png",
+          "customerfield1": "Phone Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "252455",
+              "name": "UTL Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252492",
+              "name": "UTL 100MB Daily",
+              "amount": "100000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252493",
+              "name": "UTL 100MB Weekly",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252498",
+              "name": "UTL 10GB Monthly",
+              "amount": "11500000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252669",
+              "name": "UTL 10MB Daily",
+              "amount": "20000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252495",
+              "name": "UTL 1GB monthly",
+              "amount": "2800000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252670",
+              "name": "UTL 25MB Daily",
+              "amount": "35000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252496",
+              "name": "UTL 3GB Monthly",
+              "amount": "6500000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252494",
+              "name": "UTL 500MB Monthly",
+              "amount": "1450000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252491",
+              "name": "UTL 50MB Daily",
+              "amount": "60000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            },
+            {
+              "productCode": "252497",
+              "name": "UTL 5GB Monthly",
+              "amount": "10000000",
+              "isAmountFixed": true,
+              "billerId": "252"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Tv",
+      "iconUrl": "/StaticFiles/categorys/tv.svg",
+      "description": "Tv payments",
+      "billers": [
+        {
+          "id": "433",
+          "categoryId": "5",
+          "name": "AZAM TV",
+          "iconUrl": "/StaticFiles/billers/azam.png",
+          "customerfield1": "customerid",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "43319818",
+              "name": "Azam Lite &#40;10,000&#47;&#61;&#41;",
+              "amount": "1000000",
+              "isAmountFixed": false,
+              "billerId": "433"
+            },
+            {
+              "productCode": "433748",
+              "name": "Azam Plus &#40;30,000&#47;&#61;&#41;",
+              "amount": "3000000",
+              "isAmountFixed": false,
+              "billerId": "433"
+            },
+            {
+              "productCode": "433749",
+              "name": "Azam Pure &#40;23,000&#47;&#61;&#41;",
+              "amount": "2300000",
+              "isAmountFixed": false,
+              "billerId": "433"
+            },
+            {
+              "productCode": "433747",
+              "name": "Azam Play &#40;45,000&#47;&#61;&#41;",
+              "amount": "4500000",
+              "isAmountFixed": false,
+              "billerId": "433"
+            }
+          ]
+        },
+        {
+          "id": "215",
+          "categoryId": "5",
+          "name": "Multichoice",
+          "iconUrl": "/StaticFiles/billers/dstv.jpg",
+          "customerfield1": "Account Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "21519791",
+              "name": "Box Office &#40;8,500&#47;&#61;&#41;",
+              "amount": "850000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510854",
+              "name": "XtraView&#40;44,000&#47;&#61;&#41;",
+              "amount": "4400000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21552",
+              "name": "DStv Access &#40;37,000&#47;&#61;&#41;",
+              "amount": "3700000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510838",
+              "name": "Asian Add-on Bouquet E36 &#40;132,000&#47;&#61;&#41;",
+              "amount": "13200000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21553",
+              "name": "DStv Asia &#40;132,000&#47;&#61;&#41;",
+              "amount": "13200000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21551",
+              "name": "DStv Family &#40;55,000&#47;&#61;&#41;",
+              "amount": "5500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21550",
+              "name": "DStv Compact &#40;89,000&#47;&#61;&#41;",
+              "amount": "8900000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21549",
+              "name": "DStv Compact Plus &#40;142,000&#47;&#61;&#41;",
+              "amount": "14200000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215650",
+              "name": "DStv French Plus &#40;136,000&#47;-&#41;",
+              "amount": "13600000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510839",
+              "name": "French Touch Add-on Bouquet E3 &#40;27,500&#47;&#61;&#41;",
+              "amount": "2750000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215462",
+              "name": "DStv HDPVR Access Service &#40;44,000&#47;&#61;&#41;",
+              "amount": "4400000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215648",
+              "name": "DStv Mobile Compact Value &#40;15,000&#47;-&#41;",
+              "amount": "1500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215460",
+              "name": "DStv Premium  &#43; ASIA &#40;237,000&#47;&#61;&#41;",
+              "amount": "23700000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21548",
+              "name": "DStv Premium &#40;239,000&#47;&#61;&#41;",
+              "amount": "23900000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215459",
+              "name": "DStv Premium with Dual View &#40;328,500&#47;&#61;&#41;",
+              "amount": "32850000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215646",
+              "name": "DStv Premium &#43; French Bonus &#40;349,000&#47;&#61;&#41;",
+              "amount": "34900000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510859",
+              "name": "DStv Access&#43;Xtraview &#40;77,000&#47;&#61;&#41;",
+              "amount": "7700000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510858",
+              "name": "DStv Family&#43;Xtraview &#40;94,000&#47;&#61;&#41;",
+              "amount": "9400000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510857",
+              "name": "DStv Compact&#43;Xtraview &#40;126,000&#47;&#61;&#41;",
+              "amount": "12600000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510860",
+              "name": "DStv Compact Plus&#43;XtraView &#40;177,000&#47;&#61;&#41;",
+              "amount": "17700000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21510856",
+              "name": "DStv Premium&#43;Xtraview  &#40;269,000&#47;&#61;&#41;",
+              "amount": "26900000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215649",
+              "name": "DStv French 11 &#40;66,375&#47;-&#41;",
+              "amount": "6637500",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21546",
+              "name": "GOTV Lite &#40;Monthly - 13000&#41;",
+              "amount": "1300000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215466",
+              "name": "GOtv Lite 12 Months &#40;84,000&#41;",
+              "amount": "8400000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21554",
+              "name": "GOtv Value &#40;18000&#41;",
+              "amount": "1800000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215614",
+              "name": "GOtv Mobile Bouquet  &#40;11,250&#41;",
+              "amount": "1125000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215612",
+              "name": "Gotv Max Bouquet  &#40;42,000&#41;",
+              "amount": "4200000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21555",
+              "name": "GOtv Plus &#40;29,000&#47;&#61;&#41;",
+              "amount": "2900000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215645",
+              "name": "GOtv Lite &#40;Quarterly - 31000&#41;",
+              "amount": "3100000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519819",
+              "name": "GOtv Supa - 55000",
+              "amount": "5500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519785",
+              "name": "GWALLE36 - 25000",
+              "amount": "2500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519783",
+              "name": "DStv Compact Plus Movie Bundle Add-on E36 &#40;25000&#41;",
+              "amount": "2500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519784",
+              "name": "DStv Movie Bundle Add-on E36 - 25000",
+              "amount": "2500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519789",
+              "name": "DStv Bue - Portuguese Add-on",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519786",
+              "name": "Premium E&#47;Afr E36 &#43; ASIAE36 - 261,000 ",
+              "amount": "26100000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519788",
+              "name": "Premium E&#47;Afr &#43; Showmax - 239000",
+              "amount": "23900000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519787",
+              "name": "Premium E&#47;Afr &#43; French Bonus -  375000",
+              "amount": "37500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519774",
+              "name": "Access&#43; Showmax &#40;52,150&#47;&#61;&#41;",
+              "amount": "5215000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519775",
+              "name": "Asia &#43; Showmax &#40;162,300&#47;&#61;&#41;",
+              "amount": "16230000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519773",
+              "name": "Family &#43; Showmax &#40;70,150&#47;&#61;&#41;",
+              "amount": "7015000",
+              "isAmountFixed": true,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519772",
+              "name": "Compact &#43; Showmax &#40;104,150&#47;&#61;&#41;",
+              "amount": "10415000",
+              "isAmountFixed": true,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519771",
+              "name": "Compact Plus &#43; Showmax &#40;157,150&#47;&#61;&#41;",
+              "amount": "15715000",
+              "isAmountFixed": true,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519776",
+              "name": "Great Wall &#43; Showmax &#40;55,300&#47;&#61;&#41;",
+              "amount": "5530000",
+              "isAmountFixed": true,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519769",
+              "name": "Premium E&#47;Afr &#43; Asian &#43; Showmax &#40;261,000&#47;&#61;&#41;",
+              "amount": "26100000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            },
+            {
+              "productCode": "21519770",
+              "name": "Premium E&#47;Afr &#43; French &#43; Showmax &#40;375,000&#47;&#61;&#41;",
+              "amount": "37500000",
+              "isAmountFixed": true,
+              "billerId": "215"
+            },
+            {
+              "productCode": "215615",
+              "name": "DStv Mobile Compact Standalone &#40;15,000&#47;&#61;&#41;",
+              "amount": "1500000",
+              "isAmountFixed": false,
+              "billerId": "215"
+            }
+          ]
+        },
+        {
+          "id": "213",
+          "categoryId": "5",
+          "name": "Startimes",
+          "iconUrl": "/StaticFiles/billers/startimes.png",
+          "customerfield1": "Account Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "21340",
+              "name": "Startimes",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310797",
+              "name": "Smart Bouquet - Daily &#40;3,000&#47;&#61;&#41;",
+              "amount": "300000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310798",
+              "name": "Smart Bouquet - Weekly &#40;10,000&#47;&#61;&#41;",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310799",
+              "name": "Smart Bouquet - Monthly &#40;28,000&#47;&#61;&#41;",
+              "amount": "2800000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310800",
+              "name": "Super Bouquet - Daily &#40;4,500&#47;&#61;&#41;",
+              "amount": "450000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310801",
+              "name": "Super Bouquet - Weekly &#40;18,000&#47;&#61;&#41;",
+              "amount": "1800000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310802",
+              "name": "Super Bouquet - Monthly &#40;54,000&#47;&#61;&#41;",
+              "amount": "5400000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310803",
+              "name": "Nova Bouquet - Daily &#40;1,200&#47;&#61;&#41;-DTT",
+              "amount": "120000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310804",
+              "name": "Nova Bouquet - Weekly &#40;4,000&#47;&#61;&#41;-DTT",
+              "amount": "400000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310805",
+              "name": "Nova Bouquet - Monthly &#40;12,000&#47;&#61;&#41;-DTT",
+              "amount": "1200000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310807",
+              "name": "Nova Bouquet - Daily &#40;1500&#47;&#61;&#41;-DTH",
+              "amount": "150000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "213651",
+              "name": "Startimes",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310808",
+              "name": "Nova Bouquet - Weekly &#40;5,000&#47;&#61;&#41;-DTH",
+              "amount": "500000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310809",
+              "name": "Nova Bouquet - Monthly &#40;13,500&#47;&#61;&#41;-DTH",
+              "amount": "1350000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "213652",
+              "name": "Startimes",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310791",
+              "name": "Basic Bouquet - Daily &#40;2,000&#47;&#61;&#41;",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310792",
+              "name": "Basic Bouquet - Weekly &#40;6,600&#47;&#61;&#41;",
+              "amount": "660000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310793",
+              "name": "Basic Bouquet - Monthly &#40;20,000&#47;&#61;&#41;",
+              "amount": "2000000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310794",
+              "name": "Classic Bouquet - Daily &#40;3,000&#47;&#61;&#41;",
+              "amount": "300000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310795",
+              "name": "Classic Bouquet - Weekly &#40;12,000&#47;&#61;&#41;",
+              "amount": "1200000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            },
+            {
+              "productCode": "21310796",
+              "name": "Classic Bouquet - Monthly &#40;28,000&#47;&#61;&#41;",
+              "amount": "2800000",
+              "isAmountFixed": true,
+              "billerId": "213"
+            }
+          ]
+        },
+        {
+          "id": "258",
+          "categoryId": "5",
+          "name": "ZUKU",
+          "iconUrl": "/StaticFiles/billers/zuku.png",
+          "customerfield1": "Account NUmber",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "258458",
+              "name": "Zuku TV",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "258"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Data",
+      "iconUrl": "/StaticFiles/categorys/internet.svg",
+      "description": "data bundles",
+      "billers": [
+        {
+          "id": "245",
+          "categoryId": "6",
+          "name": "Airtel Data Bundles",
+          "iconUrl": "/StaticFiles/billers/airtel.png",
+          "customerfield1": "Phone Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "245653",
+              "name": "Daily 1GB_3Day",
+              "amount": "500000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245367",
+              "name": "Airtel Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245440",
+              "name": "Daily_180MB",
+              "amount": "100000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245436",
+              "name": "Daily_30MB",
+              "amount": "25000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "2451380",
+              "name": "Airtel Daily 3GB",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245437",
+              "name": "Daily_400MB",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245439",
+              "name": "Daily_500MB",
+              "amount": "300000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245438",
+              "name": "Airtel Daily_80MB",
+              "amount": "50000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245421",
+              "name": "Monthly_1.5GB Phone",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245734",
+              "name": "Monthly_20GB",
+              "amount": "5000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245426",
+              "name": "Monthly_25GB",
+              "amount": "9000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245419",
+              "name": "Monthly_500MB",
+              "amount": "500000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245552",
+              "name": "Monthly 65GB",
+              "amount": "15000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245418",
+              "name": "Monthly_9GB",
+              "amount": "3000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245345",
+              "name": "Night_2GB",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245556",
+              "name": "Night_5GB",
+              "amount": "400000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245441",
+              "name": "Nightly_1GB_Phone",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245555",
+              "name": "Quarterly_10GB",
+              "amount": "7800000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245416",
+              "name": "Quarterly_20GB",
+              "amount": "13000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245554",
+              "name": "Quarterly_4GB",
+              "amount": "3900000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245415",
+              "name": "Quarterly_85GB",
+              "amount": "45000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245735",
+              "name": "Airtel_Weekly_Roaming_600",
+              "amount": "10000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "24510766",
+              "name": "Airtel Weekly Phone 150MB",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245736",
+              "name": "Weekly_1.17GB",
+              "amount": "700000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245533",
+              "name": "Weekly_400MB",
+              "amount": "350000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "245737",
+              "name": "Weekly_4GB",
+              "amount": "1500000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            },
+            {
+              "productCode": "24510767",
+              "name": "Airtel Weekly 7GB",
+              "amount": "2000000",
+              "isAmountFixed": true,
+              "billerId": "245"
+            }
+          ]
+        },
+        {
+          "id": "246",
+          "categoryId": "6",
+          "name": "MTN Data Bundles",
+          "iconUrl": "/StaticFiles/billers/mtn.png",
+          "customerfield1": "Phone Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "246420",
+              "name": "MTN VALD",
+              "amount": "10000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246803",
+              "name": "MTN Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246366",
+              "name": "MTN Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246590",
+              "name": "Mtn Combo daily 25 Mins &#38; 5 Local Mins, 30 SMS, 30MB, &#38; 80MB WTF for 2500",
+              "amount": "250000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246592",
+              "name": "Mtn combo weekly 200 Mins &#38; 50 Local Mins, 250 SMS, 250MB, &#38; 500MB WTF for 20000",
+              "amount": "2000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246594",
+              "name": "Mtn combo monthly  900 Mins &#38; 100 Local Mins, 1000 SMS, 1GB, &#38; 1GB WTF for 50000",
+              "amount": "5000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "2462378",
+              "name": " MTN Data Unlimited Basic for 179,000",
+              "amount": "17900000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246617",
+              "name": "MTN Data Daily 40MBs -500",
+              "amount": "50000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246618",
+              "name": "MTN Data Daily 100MBs -1000",
+              "amount": "100000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246619",
+              "name": "MTN Data Daily 300MBs -2000",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246635",
+              "name": "MTN Data Monthly 170GBs -550000",
+              "amount": "55000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246624",
+              "name": "MTN Data Night pack 1GB valid 12am-6am -2000",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246622",
+              "name": "MTN Data Daily 60MBs valid for 60Mins -500",
+              "amount": "50000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246616",
+              "name": "MTN Data Daily 15MBs 250",
+              "amount": "25000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246620",
+              "name": "MTN Data Daily 1GB -5000",
+              "amount": "500000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246694",
+              "name": "MTN Data Weekly 500MBs -5000",
+              "amount": "500000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246695",
+              "name": "MTN Data Weekly1.5Gb -10000",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246696",
+              "name": "MTN Data Weekly 5GB -20000",
+              "amount": "2000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246636",
+              "name": "MTN Data Monthly 25MBs -1500",
+              "amount": "150000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246697",
+              "name": "MTN Data Monthly 300MBs -5500",
+              "amount": "550000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246698",
+              "name": "MTN Data Monthly 600MBs -10000",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246699",
+              "name": "MTN Data Monthly 3GB -20000",
+              "amount": "2000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246633",
+              "name": "MTN Data Monthly 10GBs -50000",
+              "amount": "5000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246634",
+              "name": "MTN Data  Monthly 30GBs -100000",
+              "amount": "10000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246643",
+              "name": "MTN Data Quarterly 2GB -30000",
+              "amount": "3000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246701",
+              "name": "MTN Data Quarterly 10GB-75500",
+              "amount": "7550000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246702",
+              "name": "MTN Data Quarterly 30GB -150000",
+              "amount": "15000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246576",
+              "name": "Mtn Voice 20 Mins valid for 24hrs -1000",
+              "amount": "100000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246578",
+              "name": "Mtn Voice 60 Mins until 12am -2000",
+              "amount": "200000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246575",
+              "name": "Mtn Voice 10 Mins Until 12am -700",
+              "amount": "70000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246574",
+              "name": "Mtn Voice daily 6Mins Until 12am -500",
+              "amount": "50000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "2462382",
+              "name": "Mtn  Voice Monthly 2,400 Mins for 35,000",
+              "amount": "3500000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246586",
+              "name": "Mtn Voice monthly 4500 Mins-50000",
+              "amount": "5000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "2462380",
+              "name": "Mtn Voice Monthly 125 Mins for 5,000",
+              "amount": "500000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "2462381",
+              "name": "MTn VOice Monthly 300 Mins for 10,000",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "246"
+            },
+            {
+              "productCode": "246631",
+              "name": "Total test Item",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "246"
+            }
+          ]
+        },
+        {
+          "id": "259",
+          "categoryId": "6",
+          "name": "ROKE Data Bundles",
+          "iconUrl": "/StaticFiles/billers/roke.png",
+          "customerfield1": "Account Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "25919815",
+              "name": "Monthly Roke Classic Plus &#40;60GB&#41;",
+              "amount": "11200000",
+              "isAmountFixed": false,
+              "billerId": "259"
+            },
+            {
+              "productCode": "25919816",
+              "name": "Monthly Roke Unlimited Plus &#40;150GB&#41;",
+              "amount": "28000000",
+              "isAmountFixed": false,
+              "billerId": "259"
+            },
+            {
+              "productCode": "25919817",
+              "name": "Monthly Roke Mega Plus &#40;450GB&#41;",
+              "amount": "72800000",
+              "isAmountFixed": false,
+              "billerId": "259"
+            },
+            {
+              "productCode": "259563",
+              "name": "1 day Rokespot",
+              "amount": "120000",
+              "isAmountFixed": true,
+              "billerId": "259"
+            },
+            {
+              "productCode": "259564",
+              "name": "1 week Rokespot",
+              "amount": "640000",
+              "isAmountFixed": true,
+              "billerId": "259"
+            },
+            {
+              "productCode": "259565",
+              "name": "1 month Roke Mega Plus",
+              "amount": "2400000",
+              "isAmountFixed": true,
+              "billerId": "259"
+            },
+            {
+              "productCode": "25910750",
+              "name": "Roke Unlimited Plus &#40;100GB&#41;",
+              "amount": "25000000",
+              "isAmountFixed": true,
+              "billerId": "259"
+            },
+            {
+              "productCode": "25910751",
+              "name": "Roke Classic Plus &#40;40GB&#41;",
+              "amount": "10000000",
+              "isAmountFixed": true,
+              "billerId": "259"
+            }
+          ]
+        },
+        {
+          "id": "255",
+          "categoryId": "6",
+          "name": "Smile Data Bundles",
+          "iconUrl": "/StaticFiles/billers/smile.png",
+          "customerfield1": "Account Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "25510832",
+              "name": "Unlimited Essential",
+              "amount": "17900000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510818",
+              "name": "KyookyaWiki 20GB",
+              "amount": "4200000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510820",
+              "name": "KyookyaWiki 30GB",
+              "amount": "5200000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510835",
+              "name": "Unlimited Platinum Plus",
+              "amount": "55000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510834",
+              "name": "Unlimited Premium Plus",
+              "amount": "33000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510833",
+              "name": "Unlimited Essential Plus",
+              "amount": "19900000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510814",
+              "name": "Weekly 1GB",
+              "amount": "600000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510815",
+              "name": "Weekly 2GB",
+              "amount": "1150000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510816",
+              "name": "Weekly 5GB",
+              "amount": "2100000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510817",
+              "name": "Weekly 10GB",
+              "amount": "3500000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510810",
+              "name": "Daily 400MB",
+              "amount": "300000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510811",
+              "name": "Daily 750MB 24 hrs",
+              "amount": "400000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510812",
+              "name": "Daily 1GB",
+              "amount": "500000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510813",
+              "name": "Daily 2GB",
+              "amount": "900000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510821",
+              "name": "Monthly 1.5GB",
+              "amount": "1000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510823",
+              "name": "Monthly 5GB",
+              "amount": "2700000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510824",
+              "name": "Monthly 10GB",
+              "amount": "5000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510825",
+              "name": "Monthly 15GB",
+              "amount": "6100000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510826",
+              "name": "Monthly 25GB",
+              "amount": "8500000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510828",
+              "name": "Monthly 65GB",
+              "amount": "15000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510829",
+              "name": "Monthly 100GB",
+              "amount": "20000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510822",
+              "name": "Monthly 3GB",
+              "amount": "2000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510827",
+              "name": "Monthly 30GB",
+              "amount": "10000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510830",
+              "name": "Monthly Super TrueUnlimited",
+              "amount": "9000000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25510831",
+              "name": "Weekly Super TrueUnlimited",
+              "amount": "29900000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25519562",
+              "name": "DataKing &#8211; Monthly 115GB&#43;1Daily",
+              "amount": "22200000",
+              "isAmountFixed": true,
+              "billerId": "255"
+            },
+            {
+              "productCode": "25547",
+              "name": "Smile Airtime",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "255"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "corporate",
+      "iconUrl": "/StaticFiles/categorys/corporate.svg",
+      "description": "corporate payments",
+      "billers": [
+        {
+          "id": "257",
+          "categoryId": "7",
+          "name": "FIT Farmer Deposits",
+          "iconUrl": "",
+          "customerfield1": "Account Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "257456",
+              "name": "Free Withdrawal 2",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257121",
+              "name": "Card Withdraw",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257117",
+              "name": "Card Deposit",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257465",
+              "name": "Cardless Deposit",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257131",
+              "name": "Beans",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257127",
+              "name": "Cassava",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257130",
+              "name": "COCOA",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257129",
+              "name": "Coffee",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257128",
+              "name": "Cowpeas",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257126",
+              "name": "Groundnuts",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257124",
+              "name": "Maize grain",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257125",
+              "name": "Millet Grain",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257123",
+              "name": "Rice ",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257122",
+              "name": "Sesame",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257120",
+              "name": "Soya Beans",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257119",
+              "name": "TEA",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257116",
+              "name": "Transfer Between Farmers",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            },
+            {
+              "productCode": "257118",
+              "name": "Cash Withdrawal",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "257"
+            }
+          ]
+        },
+        {
+          "id": "398",
+          "categoryId": "7",
+          "name": "KCCA  PAYMENTS",
+          "iconUrl": "",
+          "customerfield1": "PRN",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "3981392",
+              "name": "KCCA PAYMENT",
+              "amount": "0",
+              "isAmountFixed": true,
+              "billerId": "398"
+            }
+          ]
+        },
+        {
+          "id": "327",
+          "categoryId": "7",
+          "name": "Tugende Payments",
+          "iconUrl": "",
+          "customerfield1": "Customer Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "327529",
+              "name": "Tugende Loan Payment",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "327"
+            }
+          ]
+        },
+        {
+          "id": "397",
+          "categoryId": "7",
+          "name": "URA  PAYMENTS",
+          "iconUrl": "",
+          "customerfield1": "PRN",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "3971391",
+              "name": "URA PAYMENT",
+              "amount": "0",
+              "isAmountFixed": true,
+              "billerId": "397"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Utility",
+      "iconUrl": "/StaticFiles/categorys/utilities.svg",
+      "description": "Utility Payments",
+      "billers": [
+        {
+          "id": "437",
+          "categoryId": "8",
+          "name": "UMEME",
+          "iconUrl": "/StaticFiles/billers/umeme.png",
+          "customerfield1": "Meter Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "4372346",
+              "name": "Umeme Postpaid",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "437"
+            },
+            {
+              "productCode": "4372347",
+              "name": "Umeme Yaka",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "437"
+            }
+          ]
+        },
+        {
+          "id": "249",
+          "categoryId": "8",
+          "name": "NWSC-Payments",
+          "iconUrl": "/StaticFiles/billers/water.png",
+          "customerfield1": "Account NUmber",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "249375",
+              "name": "NWSC Entebbe",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249372",
+              "name": "NWSC Iganga",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249373",
+              "name": "NWSC Jinja",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249371",
+              "name": "NWSC Kampala",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249377",
+              "name": "NWSC Lugazi",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249379",
+              "name": "Other NWSC Areas",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249541",
+              "name": "Stanbic NWSC Entebbe",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249542",
+              "name": "Stanbic NWSC Iganga",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249543",
+              "name": "Stanbic NWSC Jinja",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249544",
+              "name": "Stanbic NWSC Kajjansi",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249548",
+              "name": "Stanbic NWSC Kampala",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249546",
+              "name": "Stanbic NWSC Kawuku",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249545",
+              "name": "Stanbic NWSC Lugazi",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249549",
+              "name": "Stanbic NWSC Mukono",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            },
+            {
+              "productCode": "249547",
+              "name": "Stanbic Other NWSC Areas",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "249"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Mobile Money",
+      "iconUrl": "/StaticFiles/categorys/momo.svg",
+      "description": "Mobile Money",
+      "billers": [
+        {
+          "id": "443",
+          "categoryId": "11",
+          "name": "Airtel Money",
+          "iconUrl": "/StaticFiles/billers/airtel-money.jpg",
+          "customerfield1": "Phone Number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "4432362",
+              "name": "AIRTEL DEPOSIT",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "443"
+            },
+            {
+              "productCode": "4432361",
+              "name": "AIRTEL WITHDRAW",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "443"
+            }
+          ]
+        },
+        {
+          "id": "283",
+          "categoryId": "11",
+          "name": "MTN MOBILE MONEY",
+          "iconUrl": "/StaticFiles/billers/mtn-momo.jpg",
+          "customerfield1": "Phone number",
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "28310717",
+              "name": "MTN Deposit",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "283"
+            },
+            {
+              "productCode": "28310716",
+              "name": "MTN Withdraw",
+              "amount": "0",
+              "isAmountFixed": false,
+              "billerId": "283"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  }

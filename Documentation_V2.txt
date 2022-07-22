@@ -1,0 +1,33 @@
+1 - Display categories (e.g) DATA, AIRTIME
+public class Category
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string iconUrl { get; set; }
+        public string description { get; set; }
+        public List<Biller> billers { get; set; }
+    }
+
+
+2. Display billers under category (e.g) MTN, AIRTEL UNDER DATA
+public class Biller
+    {
+        public string id { get; set; }
+        public string categoryId { get; set; }
+        public string name { get; set; }
+        public string iconUrl { get; set; }
+        public string customerfield1 { get; set; }
+        public List<Paymentitem> paymentitems { get; set; }
+    }
+
+3. Display payment items under the biller (e.g) MTN UNlimited, MTN DAILy etc
+    public class Paymentitem
+    {
+        public string productCode { get; set; }
+        public string name { get; set; }
+        public string amount { get; set; }
+        public bool isAmountFixed { get; set; }
+        public string billerId { get; set; }
+    }
+Display customer field
+if amount fixed don't show input otherwise show input

@@ -1,0 +1,22 @@
+
+{
+    "region" : "us-east-1",
+    "configuration" : "Debug",
+    "framework"     : "netcoreapp3.1",
+    "self-contained" : false,
+    "application"    : "NVBillPaymentsAPI",
+    "environment"    : "NVBillPaymentsAPI-prod",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.2.5 running .NET Core",
+    "environment-type"     : "LoadBalanced",
+    "cname"                : "nvbillpaymentsapi-prod",
+    "instance-type"        : "t3a.medium",
+    "key-pair"             : "new-vision-key-pair",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "aws-elasticbeanstalk-service-role",
+    "proxy-server"         : "nginx",
+    "loadbalancer-type"    : "application",
+    "health-check-url"     : "/"
+}

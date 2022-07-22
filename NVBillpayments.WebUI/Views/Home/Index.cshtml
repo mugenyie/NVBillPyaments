@@ -1,0 +1,24 @@
+﻿@model NVBillPayments.Shared.ViewModels.Product.QuickTellerSimpleVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    @foreach (var category in Model.categorys)
+    {
+    <div class="category-row">
+        <p class="biller-title">@category.name</p>
+        <hr />
+        <div class="row">
+            @foreach (var biller in category.billers)
+            {
+                <div class="biller-item">
+                    <div onclick="location.href = '/Billers/Index?billerId=@biller.id'" class="box">
+                        <p class="biller-title">@biller.name</p>
+                        <img style="width:40px;" src="@biller.IconUrl" alt="Alternate Text" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    }
