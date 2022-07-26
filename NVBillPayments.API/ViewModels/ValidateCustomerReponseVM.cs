@@ -11,6 +11,7 @@ namespace NVBillPayments.API.ViewModels
         public string paymentItem { get; set; }
         public string customerId { get; set; }
         public int amount { get; set; }
+        public int quantity { get; set; }
         public int surcharge { get; set; }
         public int excise { get; set; }
         public int totalAmount { get; set; }

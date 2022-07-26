@@ -13,6 +13,7 @@
           "name": "Bride & Groom Expo",
           "iconUrl": "/StaticFiles/billers/bride&groom.png",
           "customerfield1": "Name and Phone number",
+          "quantity":  true,
           "customerfield2": null,
           "paymentitems": [
             {

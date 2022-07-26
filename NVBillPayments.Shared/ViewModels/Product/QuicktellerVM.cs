@@ -62,6 +62,7 @@ namespace NVBillPayments.Shared.ViewModels.Product
         public QuicktellerBillerVM()
         {
             IconUrl = "https://www.multichoice.com/media/1171/kisspng-dstv-multichoice-television-channel-supersport-high-end-decadent-strokes-5aee29bfb154805670399115255576957264.png";
+            quantity = false;
         }
 
         public string id { get; set; }
@@ -69,6 +70,7 @@ namespace NVBillPayments.Shared.ViewModels.Product
         public string name { get; set; }
         public string IconUrl { get; set; }
         public string customerfield1 { get; set; }
+        public bool quantity { get; set; }
         public List<QuicktellerPaymentItemVM> paymentitems { get; set; }
     }
 

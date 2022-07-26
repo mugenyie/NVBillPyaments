@@ -205,6 +205,7 @@ namespace NVBillPayments.API.Controllers
                 case "1":
                 case "2": //vision tickets
                     {
+                        int quantity = customerVM.quantity > 0 ? customerVM.quantity : 1;
                         var paymentitem = GetProduct(customerVM.productCode);
                         string transactionRef = "custom-" + Guid.NewGuid().ToString();
                         ValidatedCustomerReponse customerReponse = new ValidatedCustomerReponse
@@ -220,10 +221,11 @@ namespace NVBillPayments.API.Controllers
                             customerName = customerVM.customerfield1,
                             paymentItem = paymentitem.name,
                             customerId = customerVM.customerfield1,
-                            amount = int.Parse(customerVM.amount),
+                            amount = int.Parse(customerVM.amount) * quantity,
+                            quantity = quantity,
                             surcharge = 0,
                             excise = 0,
-                            totalAmount = int.Parse(customerVM.amount),
+                            totalAmount = int.Parse(customerVM.amount) * quantity,
                             transactionRef = transactionRef
                         };
 
