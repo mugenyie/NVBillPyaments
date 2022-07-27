@@ -11,6 +11,7 @@ using NVBillPayments.Core.Models;
 using NVBillPayments.ServiceProviders.Quickteller;
 using NVBillPayments.ServiceProviders.Quickteller.Models;
 using NVBillPayments.Shared.Enums;
+using NVBillPayments.Shared.Helpers;
 using NVBillPayments.Shared.ViewModels.Product;
 using System;
 using System.Collections.Generic;
@@ -139,11 +140,14 @@ namespace NVBillPayments.API.Controllers
 
             var paymentitem = billers.SelectMany(x => x.paymentitems).Where(p => p.productCode == productCode).FirstOrDefault();
 
+            var category = billers.Where(x => x.id == paymentitem.billerId).FirstOrDefault();
+
             StringWriter billerName = new StringWriter();
             HttpUtility.HtmlDecode(paymentitem.name, billerName);
             paymentitem.name = billerName.ToString();
 
             paymentitem.amount = CleanAmountString(paymentitem.amount);
+            paymentitem.categoryName = category.name;
 
             return paymentitem;
         }
@@ -203,6 +207,7 @@ namespace NVBillPayments.API.Controllers
             switch (customerVM.productCode)
             {
                 case "1":
+                case "0":
                 case "2": //vision tickets
                     {
                         int quantity = customerVM.quantity > 0 ? customerVM.quantity : 1;
@@ -308,6 +313,9 @@ namespace NVBillPayments.API.Controllers
             string sponsorId = paymentRequest?.SponsorId != null ? paymentRequest.SponsorId?.ValidatePhoneNumber() : "";
 
             var transactionRequest = await _cachingService.Get<TransactionReferenceVM>($"transactionRef-{paymentRequest.TransactionReference.ToLower()}");
+
+            var paymentItem = GetProduct(transactionRequest.customerRequest.ProductCode);
+
             if (transactionRequest != null)
             {
                 PaymentAdviceRequest paymentAdviceRequest = new PaymentAdviceRequest
@@ -328,7 +336,7 @@ namespace NVBillPayments.API.Controllers
                     AccountMSISDN = transactionRequest.customerRequest.PhoneNumber,
                     AccountName = transactionRequest.customerReponse.customerName,
                     ProductId = paymentAdviceRequest.PaymentCode,
-                    ProductDescription = transactionRequest.customerReponse.paymentItem,
+                    ProductDescription = $"{paymentItem.categoryName} - {paymentItem.name}",
                     ServiceProviderId = transactionRequest.serviceProvider.ToString(),
                     OrderReference = JsonConvert.SerializeObject(paymentAdviceRequest),
                     PaymentReference = paymentLink,
@@ -338,9 +346,25 @@ namespace NVBillPayments.API.Controllers
                     SponsorMSISDN = sponsorId
                 };
 
+                switch (transactionRequest.customerRequest.ProductCode)
+                {
+                    case "1": case "0":
+                        {
+                            _transaction.SystemCategory = SystemCategory.TICKETS.ToString();
+                            break;
+                        }
+                }
+
                 var transaction = await _transactionService.SaveTransactionAsync(_transaction);
                 if(transaction != null)
                 {
+                    if (transactionRequest.customerRequest.ProductCode.Equals("0"))
+                    {
+                        //test transaction mark succesful
+                        await _transactionService.ProcessSuccesfulPaymentCallback(transaction.TransactionId.ToString(), 0, PaymentProvider.TEST_PAYMENT.ToString(), "");
+                        return StatusCode(StatusCodes.Status200OK, new { Message = "Thanks for testing Ticket Purchase on this platform, You will not be charged.", PaymentLink = paymentLink });
+                    }
+
                     if (paymentRequest.PaymentMethod.Equals("card"))
                     {
                         paymentLink = await _transactionService.CreateCardPaymentLinkV2(transaction, PaymentProvider.INTERSWITCH);

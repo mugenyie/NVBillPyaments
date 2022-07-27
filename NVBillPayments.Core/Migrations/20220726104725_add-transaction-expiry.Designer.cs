@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NVBillPayments.Core;
 
 namespace NVBillPayments.Core.Migrations
 {
     [DbContext(typeof(NVTransactionsDbContext))]
-    partial class NVTransactionsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220726104725_add-transaction-expiry")]
+    partial class addtransactionexpiry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,9 +269,6 @@ namespace NVBillPayments.Core.Migrations
 
                     b.Property<decimal>("ProductValue")
                         .HasColumnType("decimal(15,3)");
-
-                    b.Property<string>("QRCodeUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServiceProviderHTTPResponseStatusCode")
                         .HasColumnType("nvarchar(max)");

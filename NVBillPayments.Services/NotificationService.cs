@@ -1,5 +1,8 @@
 ﻿using NVBillPayments.Core.Interfaces;
+using NVBillPayments.Core.Models;
+using NVBillPayments.Services.Helpers;
 using NVBillPayments.Services.Models;
+using NVBillPayments.Shared.Helpers;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -14,30 +17,24 @@ namespace NVBillPayments.Services
         private IRestClient _restClient;
         private IRestRequest _restRequest;
 
-        public NotificationService()
+        private readonly IQRCodeService _qrCodeService;
+
+        public NotificationService(IQRCodeService qrCodeService)
         {
             _restClient = new RestClient(BaseURL);
+            _qrCodeService = qrCodeService;
         }
 
         public async Task SendEmailAsync(string Title, string email, string message, string username)
         {
             EmailNotification emailNotification = new EmailNotification
             {
-                type = "BILLPAYMENT_TRANSACTION",
+                from = "noreply@newvision.co.ug",
                 to = email,
-                request = new Request
-                {
-                    type = "BILLPAYMENT_TRANSACTION",
-                    send_format = "string"
-                },
-                @params = new Params
-                {
-                    NAME = username,
-                    BILLPAYMENT_TITLE = Title,
-                    BILLPAYMENT_DESCRIPTION = message
-                }
+                subject = Title,
+                textBody = message
             };
-            _restRequest = new RestRequest($"v1/Notification/sendinstantemailnotification", Method.POST);
+            _restRequest = new RestRequest($"v1/Notification/sendemail", Method.POST);
             _restRequest.AddJsonBody(emailNotification);
             await _restClient.ExecuteAsync(_restRequest);
         }
@@ -60,6 +57,24 @@ namespace NVBillPayments.Services
             _restRequest = new RestRequest($"v1/Notification/individual", Method.POST);
             _restRequest.AddJsonBody(emailNotification);
             await _restClient.ExecuteAsync(_restRequest);
+        }
+
+        public async Task<(string, string)> GenerateTransactionEmailTemplateAsync(Transaction transaction)
+        {
+            string qrCodeUrl = "";
+            string validationUrl = $"https://billpayments.newvisionapp.com/Transactions/{transaction.TransactionId}";
+            string qrCodebase64String = QRCodeHelper.Generate(validationUrl);
+            try
+            {
+                qrCodeUrl = await _qrCodeService.GenerateQRCodeUploadURLAsync(qrCodebase64String, transaction.TransactionId.ToString());
+            }
+            catch (Exception exp)
+            {
+
+            }
+
+            string emailMessage = TransactionEmailTemplate.Generate(transaction.AccountName, transaction.TransactionId.ToString(), qrCodeUrl, transaction.CreatedOnUTC.ToShortDateString(), transaction.ProductDescription, $"UGX {Math.Round(transaction.AmountCharged, 0)}/=");
+            return (qrCodeUrl, emailMessage);
         }
     }
 }

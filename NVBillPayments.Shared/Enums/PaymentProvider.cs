@@ -14,6 +14,7 @@ namespace NVBillPayments.Shared.Enums
         FLUTTERWAVE,
         PESAPAL,
         INTERSWITCH,
-        PEGASUS
+        PEGASUS,
+        TEST_PAYMENT
     }
 }

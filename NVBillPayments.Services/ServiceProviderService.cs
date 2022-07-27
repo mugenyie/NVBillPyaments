@@ -25,6 +25,7 @@ namespace NVBillPayments.Services
 {
     public class ServiceProviderService : IServiceProviderService
     {
+        private readonly IQRCodeService _qrCodeService;
         private readonly IQuicktellerService _quicktellerService;
         private readonly INewVisionService _newvisionService;
         private readonly IMTNService _mtnService;
@@ -38,8 +39,9 @@ namespace NVBillPayments.Services
         private const string MTNAirtime_AgentAuthorisationKey_Development = "Tu9FJCDQ7B";
         private const string MTNAirtime_AgentAuthorisationKey_Production = "MNlaV2kfw1";
 
-        public ServiceProviderService(IQuicktellerService quicktellerService, INotificationService notificationService, INewVisionService newvisionService, IMTNService mtnService, IAirtelService airtelService, ITransactionLogService transactionLogService, IRepository<Transaction> transactionsRepository)
+        public ServiceProviderService(IQRCodeService qrCodeService, IQuicktellerService quicktellerService, INotificationService notificationService, INewVisionService newvisionService, IMTNService mtnService, IAirtelService airtelService, ITransactionLogService transactionLogService, IRepository<Transaction> transactionsRepository)
         {
+            _qrCodeService = qrCodeService;
             _quicktellerService = quicktellerService;
             _newvisionService = newvisionService;
             _mtnService = mtnService;
@@ -53,6 +55,12 @@ namespace NVBillPayments.Services
         {
             if (transaction.PaymentStatus == PaymentStatus.SUCCESSFUL && transaction.OrderStatus != OrderStatus.SUCCESSFUL)
             {
+                if(transaction.PaymentProviderId == PaymentProvider.TEST_PAYMENT.ToString())
+                {
+                    await RecordSuccesfulTransactionAsync(transaction);
+                    return;
+                }
+
                 switch (transaction.ServiceProviderId)
                 {
                     case "QUICKTELLER":
@@ -123,7 +131,7 @@ namespace NVBillPayments.Services
 
         private async Task RecordSuccesfulTransactionAsync(Transaction transaction)
         {
-            string emailMessage = $"A new transaction (Tansaction ID: {transaction.TransactionId.ToString().ToUpper()}), {transaction.ProductDescription} of amount {transaction.CurrencyCode} {Math.Round(transaction.ProductValue,0)} has been completed on your Vision Group Platform.\n DateTime (UTC): {transaction.CreatedOnUTC.ToLongDateString()}";
+            var qrEmailTemplate = await _notificationService.GenerateTransactionEmailTemplateAsync(transaction);
             string customerMessage = $"{transaction.ProductDescription} for {transaction.BeneficiaryMSISDN}, {transaction.CurrencyCode} {Math.Round(transaction.AmountCharged,0)}";
 
             transaction.OrderStatus = OrderStatus.SUCCESSFUL;
@@ -132,10 +140,11 @@ namespace NVBillPayments.Services
             transaction.TransactionStatusMessage = customerMessage;
             transaction.ModifiedBy = "Orders Processor";
             transaction.ModifiedOnUTC = DateTime.UtcNow;
+            transaction.QRCodeUrl = qrEmailTemplate.Item1;
             _transactionsRepository.Update(transaction);
             await _transactionsRepository.SaveChangesAsync();
             _notificationService.SendInAppAsync($"Successful Transaction - {transaction.ProductDescription}", transaction.AccountEmail, customerMessage);
-            _notificationService.SendEmailAsync(transaction.ProductDescription, transaction.AccountEmail, emailMessage, transaction.AccountName);
+            _notificationService.SendEmailAsync(transaction.ProductDescription, transaction.AccountEmail, qrEmailTemplate.Item2, transaction.AccountName);
         }
 
         private async Task RecordFailedTransaction(Transaction transaction, string TechnicalErrorMessage, string CustomerFriendlyMessage)

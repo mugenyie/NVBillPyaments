@@ -23,6 +23,7 @@ namespace NVBillPayments.Core.Models
             PaymentStatusMsg = PaymentStatus.PENDING.ToString();
             TransactionStatus = TransactionStatus.PENDING;
             TransactionStatusMessage = "Transaction is being processed";
+            IsExpired = false;
         }
 
         [Key]
@@ -78,5 +79,7 @@ namespace NVBillPayments.Core.Models
         public string PaymentReference { get; set; }
         public string OrderReference { get; set; }
         public string MetaData { get; set; }
+        public bool IsExpired { get; set; }
+        public string QRCodeUrl { get; set; }
     }
 }

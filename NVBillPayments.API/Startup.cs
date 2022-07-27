@@ -53,6 +53,7 @@ namespace NVBillPayments.API
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+            services.AddSingleton<IQRCodeService, QRCodeService>();
             //services.AddHostedService<TransactionsWorker>();
             //services.AddHostedService<TransactionsLogWorker>();
             services.AddScoped<ITransactionService, TransactionService>();

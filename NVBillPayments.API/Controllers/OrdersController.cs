@@ -186,6 +186,26 @@ namespace NVBillPayments.API.Controllers
         }
 
         [HttpGet]
+        [Route("transaction-receipt")]
+        public IActionResult getTransactionReceipt(string transactionId)
+        {
+            var transaction = _transactionService.GetById(transactionId);
+            if(transaction != null)
+            {
+                return Ok(new
+                {
+                    TransactionRef = transaction.TransactionId.ToString(),
+                    CustomerRef = transaction.AccountName,
+                    Date = transaction.CreatedOnUTC.ToShortDateString(),
+                    ProductDescription = transaction.ProductDescription,
+                    AmountCharged = transaction.AmountCharged,
+                    QRCodeUrl = transaction.QRCodeUrl ?? ""
+                });
+            }
+            return new NotFoundObjectResult("Transaction not found");
+        }
+
+        [HttpGet]
         [Route("Recommended")]
         public IActionResult GetRecommended(string email, string category, bool singlePerCategory = false, int limit = 10, int offset = 0)
         {

@@ -12,6 +12,7 @@ using NVBillPayments.ServiceProviders.MTNUG;
 using NVBillPayments.Services.Helpers;
 using NVBillPayments.Shared;
 using NVBillPayments.Shared.Enums;
+using NVBillPayments.Shared.Helpers;
 using NVBillPayments.Shared.ViewModels.Product;
 using NVBillPayments.Shared.ViewModels.Transaction;
 using RabbitMQ.Client;
@@ -375,7 +376,8 @@ namespace NVBillPayments.Services
             if(transaction != null)
             {
                 string customerMessage = $"{transaction.ProductDescription} for {transaction.BeneficiaryMSISDN}, {transaction.CurrencyCode} {Math.Round(transaction.AmountCharged, 0)}";
-                string emailMessage = $"A new transaction (Tansaction ID: {transaction.TransactionId.ToString().ToUpper()}), {transaction.ProductDescription} of amount {transaction.CurrencyCode} {Math.Round(transaction.ProductValue, 0)} has been completed on your Vision Group Platform.";
+
+                var qrEmailTemplate = await _notificationService.GenerateTransactionEmailTemplateAsync(transaction);
 
                 transaction.OrderStatus = orderStatus;
                 transaction.OrderStatusMsg = orderStatus.ToString();
@@ -383,10 +385,11 @@ namespace NVBillPayments.Services
                 transaction.TransactionStatus = transaction.OrderStatus == OrderStatus.SUCCESSFUL ? TransactionStatus.SUCCESSFUL : TransactionStatus.FAILED;
                 transaction.ModifiedBy = "Order Processor";
                 transaction.ModifiedOnUTC = DateTime.UtcNow;
+                transaction.QRCodeUrl = qrEmailTemplate.Item1;
                 _transactionsRepository.Update(transaction);
                 await _transactionsRepository.SaveChangesAsync();
                 _notificationService.SendInAppAsync($"Successful Transaction - {transaction.ProductDescription}", transaction.AccountEmail, customerMessage);
-                _notificationService.SendEmailAsync(transaction.ProductDescription, transaction.AccountEmail, emailMessage, transaction.AccountName);
+                _notificationService.SendEmailAsync(transaction.ProductDescription, transaction.AccountEmail, qrEmailTemplate.Item2, transaction.AccountName);
             }
         }
 

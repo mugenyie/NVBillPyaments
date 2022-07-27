@@ -7,6 +7,8 @@ namespace NVBillPayments.Shared.Enums
     public enum SystemCategory
     {
         AIRTIME,
-        BUNDLES
+        BUNDLES,
+        TICKETS,
+        UTILITY
     }
 }

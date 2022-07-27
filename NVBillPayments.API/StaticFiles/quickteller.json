@@ -13,7 +13,7 @@
           "name": "Bride & Groom Expo",
           "iconUrl": "/StaticFiles/billers/bride&groom.png",
           "customerfield1": "Name and Phone number",
-          "quantity":  true,
+          "quantity": true,
           "customerfield2": null,
           "paymentitems": [
             {
@@ -29,6 +29,24 @@
               "amount": "2000000",
               "isAmountFixed": true,
               "billerId": "1"
+            }
+          ]
+        },
+        {
+          "id": "0",
+          "categoryId": "1",
+          "name": "Test Ticket",
+          "iconUrl": "/StaticFiles/placeholder.jpg",
+          "customerfield1": "Name and Phone number",
+          "quantity": true,
+          "customerfield2": null,
+          "paymentitems": [
+            {
+              "productCode": "0",
+              "name": "Singles - UGX 0",
+              "amount": "0",
+              "isAmountFixed": true,
+              "billerId": "0"
             }
           ]
         }

@@ -7,6 +7,7 @@ using NVBillPayments.Core.Enums;
 using NVBillPayments.Core.Models;
 using NVBillPayments.ServiceProviders.MTNUG.Models;
 using NVBillPayments.Shared.Enums;
+using NVBillPayments.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,12 @@ namespace NVBillPayments.API.Controllers
         public ReportsController(IRepository<Transaction> transactionsRepository)
         {
             _transactionsRepository = transactionsRepository;
+        }
+
+        [HttpGet]
+        public IActionResult GenerateQR(string input)
+        {
+            return Ok(QRCodeHelper.Generate(input));
         }
 
         #region MTNBundles

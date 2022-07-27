@@ -6,22 +6,12 @@ namespace NVBillPayments.Services.Models
 {
     public class EmailNotification
     {
-        public Request request { get; set; }
-        public Params @params { get; set; }
+        public string from { get; set; }
         public string to { get; set; }
-        public string type { get; set; }
-    }
-
-    public class Request
-    {
-        public string type { get; set; }
-        public string send_format { get; set; }
-    }
-
-    public class Params
-    {
-        public string BILLPAYMENT_TITLE { get; set; }
-        public string NAME { get; set; }
-        public string BILLPAYMENT_DESCRIPTION { get; set; }
+        public string subject { get; set; }
+        public string textBody { get; set; }
+        public List<string> cc { get; set; }
+        public List<string> bcc { get; set; }
+        public List<string> attachments { get; set; }
     }
 }

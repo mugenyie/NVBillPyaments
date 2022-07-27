@@ -76,6 +76,7 @@ namespace NVBillPayments.Shared.ViewModels.Product
 
     public class QuicktellerPaymentItemVM 
     {
+        public string categoryName { get; set; }
         public string productCode { get; set; }
         public string name { get; set; }
         public string amount { get; set; }
