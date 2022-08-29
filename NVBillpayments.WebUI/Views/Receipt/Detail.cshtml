@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+@model NVBillpayments.WebUI.Models.TransactionDetailVM
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    @if (Model != null)
+    {
+        var orderStatus = Model.isExpired ? "Expired Order" : "Still Valid";
+        <style>
+
+    .prd-title {
+            font-weight: bold;
+        }
+
+            .prd-item {
+            font-weight: bold;
+        }
+        </style>
+        <p class="prd-title">@Model.productDescription</p>
+        <strong>-(@orderStatus)-</strong>
+        <p>Name: <span class="prd-item">@Model.accountName</span></p>
+        <p>Tel: <span class="prd-item">@Model.accountMSISDN</span></p>
+        <p>Email: <span class="prd-item">@Model.accountEmail</span></p>
+        <p>Amount Paid: <span class="prd-item">@Model.amountCharged</span></p>
+        <p>Payment Method: <span class="prd-item">@Model.paymentProvider</span></p>
+        <br />
+        <div style="display:none" id="hideMe">
+            <p>Enter Admin passphrase to continue:</p>
+            <input value="" id="passcode" type="text" placeholder="xxxxxx" />
+            <input value="@Model.transactionId" id="transactionid" type="hidden" />
+        </div>
+        <br />
+        <br />
+        <button onclick="myFunction();">Invalidate Transaction</button>
+    }
+    else
+    {
+        <h1>Transaction not found</h1>
+    }
+
+    <script>
+        function myFunction() {
+            var hideMe = document.getElementById("hideMe");
+            var passcode = document.getElementById("passcode");
+            var transactionid = document.getElementById("transactionid");
+            if (passcode.value === "") {
+                hideMe.style.display = "block";
+            } else {
+                fetch(`/invalidate?id=${transactionid.value}&passphrase=${passcode.value}`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        alert(data.message);
+                        location.reload();
+                    }).catch(error => alert("Failed"));
+            }
+        }
+    </script>
+</body>
+</html>

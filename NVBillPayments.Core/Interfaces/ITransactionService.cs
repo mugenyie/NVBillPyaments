@@ -11,7 +11,7 @@ namespace NVBillPayments.Core.Interfaces
 {
     public interface ITransactionService
     {
-        Task AddTransactionToQueueAsync(object message);
+        void AddTransactionToQueue(object message);
         Transaction GetById(string transactionId);
         Task<Transaction> SaveTransactionAsync(Transaction transaction);
         Task<string> CreateCardPaymentLinkV2(Transaction transaction, PaymentProvider paymentProvider);
@@ -25,5 +25,7 @@ namespace NVBillPayments.Core.Interfaces
         List<SimpleTransactionsVM> GetRecommendedOrders(string email, string category, bool singlePerCategory = false, int limit=20, int offset=0);
         Task<object> GetThirdpartyTransactionStatusAsync(string transactionId);
         Task<string> CreateCardPaymentLink(AddTransactionVM transaction, PaymentProvider paymentProvider = PaymentProvider.FLUTTERWAVE);
+        Task ProcessFreeChargeProductAsync(Transaction transactionRecord);
+        Task<bool> MarkExpired(Transaction transaction);
     }
 }

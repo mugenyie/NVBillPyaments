@@ -45,6 +45,8 @@ namespace NVBillpayments.WebUI
             });
             services.AddScoped<ICachingService, CachingService>();
 
+            //services.AddSingleton<ITransactionService, TransactionService>();
+
             services.AddControllersWithViews();
         }
 

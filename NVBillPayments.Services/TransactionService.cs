@@ -29,10 +29,10 @@ namespace NVBillPayments.Services
     {
         private readonly IRepository<Transaction> _transactionsRepository;
         private readonly IRepository<CashBackPolicy> _cashBackPolicy;
-        //private readonly ConnectionFactory factory;
-        //private readonly IConnection connection;
-        //private readonly IModel channel;
-        //private readonly string TransactionsQueueName = ConfigurationConstants.QUEUE_NAME;
+        private readonly ConnectionFactory factory;
+        private readonly IConnection connection;
+        private readonly IModel channel;
+        private readonly string TransactionsQueueName = ConfigurationConstants.QUEUE_NAME;
 
         private readonly IProductService _productService;
         private readonly IPaymentService _paymentService;
@@ -59,12 +59,12 @@ namespace NVBillPayments.Services
             IPegasusService pegasusService,
             IInterswitchService interswitchService)
         {
-            //factory = new ConnectionFactory
-            //{
-            //    Uri = new Uri(ConfigurationConstants.RABBITMQ_URI)
-            //};
-            //connection = factory.CreateConnection();
-            //channel = connection.CreateModel();
+            factory = new ConnectionFactory
+            {
+                Uri = new Uri(ConfigurationConstants.RABBITMQ_URI)
+            };
+            connection = factory.CreateConnection();
+            channel = connection.CreateModel();
 
             _transactionsRepository = transactionsRepository;
             _cashBackPolicy = cashBackPolicy;
@@ -80,17 +80,14 @@ namespace NVBillPayments.Services
             _interswitchService = interswitchService;
         }
 
-        public async Task AddTransactionToQueueAsync(object message)
+        public void AddTransactionToQueue(object message)
         {
-            await Task.Run(() =>
-            {
-                //var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
+            var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
-                //channel.BasicPublish(exchange: "",
-                //                     routingKey: TransactionsQueueName,
-                //                     basicProperties: null,
-                //                     body: body);
-            });
+            channel.BasicPublish(exchange: "",
+                                 routingKey: TransactionsQueueName,
+                                 basicProperties: null,
+                                 body: body);
         }
 
         public async Task<string> CreateCardPaymentLinkV2(Transaction transaction, PaymentProvider paymentProvider)
@@ -169,6 +166,21 @@ namespace NVBillPayments.Services
             {
                 return null;
             }
+        }
+
+        public async Task<bool> MarkExpired(Transaction transaction)
+        {
+            try
+            {
+                transaction.IsExpired = true;
+                _transactionsRepository.Update(transaction);
+                await _transactionsRepository.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exp)
+            {
+            }
+            return false;
         }
 
         public async Task<Transaction> ProcessTransactionAsync(AddTransactionVM transaction)
@@ -279,7 +291,7 @@ namespace NVBillPayments.Services
             return transactionRecord;
         }
 
-        private async Task ProcessFreeChargeProductAsync(Transaction transactionRecord)
+        public async Task ProcessFreeChargeProductAsync(Transaction transactionRecord)
         {
             transactionRecord.PaymentStatus = PaymentStatus.SUCCESSFUL;
             transactionRecord.PaymentStatusMsg = PaymentStatus.SUCCESSFUL.ToString();
@@ -292,7 +304,8 @@ namespace NVBillPayments.Services
             _transactionsRepository.Update(transactionRecord);
             await _transactionsRepository.SaveChangesAsync();
 
-            await _serviceProvider.ProcessOrderAsync(transactionRecord);
+            AddTransactionToQueue(transactionRecord);
+            //_serviceProvider.ProcessOrderAsync(transactionRecord);
         }
 
         public async Task InititateMobilePaymentCollectionAsync(Transaction transaction)

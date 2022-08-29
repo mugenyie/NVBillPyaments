@@ -55,12 +55,6 @@ namespace NVBillPayments.Services
         {
             if (transaction.PaymentStatus == PaymentStatus.SUCCESSFUL && transaction.OrderStatus != OrderStatus.SUCCESSFUL)
             {
-                if(transaction.PaymentProviderId == PaymentProvider.TEST_PAYMENT.ToString())
-                {
-                    await RecordSuccesfulTransactionAsync(transaction);
-                    return;
-                }
-
                 switch (transaction.ServiceProviderId)
                 {
                     case "QUICKTELLER":
@@ -120,7 +114,7 @@ namespace NVBillPayments.Services
                         }
                     case "NEWVISION":
                         {
-                            await _newvisionService.AcknowledgeCollection(transaction.TransactionId.ToString());
+                            await RecordSuccesfulTransactionAsync(transaction);
                             return;
                         }
                     default:

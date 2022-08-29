@@ -62,7 +62,7 @@ namespace NVBillPayments.Services
         public async Task<(string, string)> GenerateTransactionEmailTemplateAsync(Transaction transaction)
         {
             string qrCodeUrl = "";
-            string validationUrl = $"https://billpayments.newvisionapp.com/Transactions/{transaction.TransactionId}";
+            string validationUrl = $"https://billpayments-web.newvisionapp.com/receipt/detail?transactionid={transaction.TransactionId}";
             string qrCodebase64String = QRCodeHelper.Generate(validationUrl);
             try
             {

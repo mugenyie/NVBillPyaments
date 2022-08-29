@@ -21,5 +21,6 @@ namespace NVBillPayments.API.ViewModels
         public string CreatedOnUTC { get; set; }
         public decimal ProductValue { get; set; }
         public decimal AmountCharged { get; set; }
+        public bool IsExpired { get; set; }
     }
 }

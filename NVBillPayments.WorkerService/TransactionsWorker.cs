@@ -2,7 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using NVBillPayments.Core.Enums;
 using NVBillPayments.Core.Interfaces;
+using NVBillPayments.Core.Models;
 using NVBillPayments.Shared;
 using NVBillPayments.Shared.ViewModels.Transaction;
 using RabbitMQ.Client;
@@ -65,12 +67,13 @@ namespace NVBillPayments.WorkerService
                 _logger.LogInformation($"Processing msg: '{message}'.");
                 try
                 {
-                    var transaction = JsonConvert.DeserializeObject<AddTransactionVM>(message);
+                    var transaction = JsonConvert.DeserializeObject<Transaction>(message);
 
                     using (var scope = _services.CreateScope())
                     {
-                        var _transactionService = scope.ServiceProvider.GetRequiredService<ITransactionService>();
-                        await _transactionService.ProcessTransactionAsync(transaction);
+                        var _serviceProvider = scope.ServiceProvider.GetRequiredService<IServiceProviderService>();
+                        if (transaction.PaymentStatus == PaymentStatus.SUCCESSFUL)
+                            await _serviceProvider.ProcessOrderAsync(transaction);
                     }
                     
                     _channel.BasicAck(e.DeliveryTag, false);

@@ -4,10 +4,10 @@
     "configuration" : "Debug",
     "framework"     : "netcoreapp3.1",
     "self-contained" : false,
-    "application"    : "NVBillPaymentsAPI",
-    "environment"    : "NVBillPaymentsAPI-prod",
+    "application"    : "billpayments-api-production",
+    "environment"    : "Billpaymentsapiproduction-env",
     "enable-xray"    : false,
-    "enhanced-health-type" : "basic",
+    "enhanced-health-type" : "enhanced",
     "additional-options"   : "",
     "solution-stack"       : "64bit Amazon Linux 2 v2.2.5 running .NET Core",
     "environment-type"     : "LoadBalanced",
@@ -18,5 +18,7 @@
     "service-role"         : "aws-elasticbeanstalk-service-role",
     "proxy-server"         : "nginx",
     "loadbalancer-type"    : "application",
-    "health-check-url"     : "/"
+    "health-check-url"     : "/",
+    "app-path"             : "/",
+    "iis-website"          : "Default Web Site"
 }

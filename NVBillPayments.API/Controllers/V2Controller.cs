@@ -215,7 +215,7 @@ namespace NVBillPayments.API.Controllers
                         string transactionRef = "custom-" + Guid.NewGuid().ToString();
                         ValidatedCustomerReponse customerReponse = new ValidatedCustomerReponse
                         {
-                            amount = int.Parse(paymentitem.amount),
+                            amount = int.Parse(paymentitem.amount)*quantity,
                             shortTransactionRef = transactionRef,
                             transactionRef = transactionRef,
                             customerName = customerVM.customerfield1,
@@ -361,7 +361,7 @@ namespace NVBillPayments.API.Controllers
                     if (transactionRequest.customerRequest.ProductCode.Equals("0"))
                     {
                         //test transaction mark succesful
-                        await _transactionService.ProcessSuccesfulPaymentCallback(transaction.TransactionId.ToString(), 0, PaymentProvider.TEST_PAYMENT.ToString(), "");
+                        await _transactionService.ProcessFreeChargeProductAsync(transaction);
                         return StatusCode(StatusCodes.Status200OK, new { Message = "Thanks for testing Ticket Purchase on this platform, You will not be charged.", PaymentLink = paymentLink });
                     }
 

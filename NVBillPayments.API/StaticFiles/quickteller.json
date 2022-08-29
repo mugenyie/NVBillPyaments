@@ -7,36 +7,36 @@
       "iconUrl": "/StaticFiles/categorys/tickets.svg",
       "description": "Tickets & Events",
       "billers": [
-        {
-          "id": "1",
-          "categoryId": "1",
-          "name": "Bride & Groom Expo",
-          "iconUrl": "/StaticFiles/billers/bride&groom.png",
-          "customerfield1": "Name and Phone number",
-          "quantity": true,
-          "customerfield2": null,
-          "paymentitems": [
-            {
-              "productCode": "1",
-              "name": "Singles - UGX 10,000",
-              "amount": "1000000",
-              "isAmountFixed": true,
-              "billerId": "1"
-            },
-            {
-              "productCode": "2",
-              "name": "Couple - UGX 20,000",
-              "amount": "2000000",
-              "isAmountFixed": true,
-              "billerId": "1"
-            }
-          ]
-        },
+        //{
+        //  "id": "1",
+        //  "categoryId": "1",
+        //  "name": "Bride & Groom Expo",
+        //  "iconUrl": "/StaticFiles/billers/bride&groom.png",
+        //  "customerfield1": "Name and Phone number",
+        //  "quantity": true,
+        //  "customerfield2": null,
+        //  "paymentitems": [
+        //    {
+        //      "productCode": "1",
+        //      "name": "Singles - UGX 10,000",
+        //      "amount": "1000000",
+        //      "isAmountFixed": true,
+        //      "billerId": "1"
+        //    },
+        //    {
+        //      "productCode": "2",
+        //      "name": "Couple - UGX 20,000",
+        //      "amount": "2000000",
+        //      "isAmountFixed": true,
+        //      "billerId": "1"
+        //    }
+        //  ]
+        //},
         {
           "id": "0",
           "categoryId": "1",
-          "name": "Test Ticket",
-          "iconUrl": "/StaticFiles/placeholder.jpg",
+          "name": "NewVision Staff Ticket",
+          "iconUrl": "/StaticFiles/billers/vide.png",
           "customerfield1": "Name and Phone number",
           "quantity": true,
           "customerfield2": null,
@@ -1495,7 +1495,7 @@
           "id": "257",
           "categoryId": "7",
           "name": "FIT Farmer Deposits",
-          "iconUrl": "",
+          "iconUrl": "/StaticFiles/billers/fit-farmers.png",
           "customerfield1": "Account Number",
           "customerfield2": null,
           "paymentitems": [
@@ -1631,7 +1631,7 @@
           "id": "398",
           "categoryId": "7",
           "name": "KCCA  PAYMENTS",
-          "iconUrl": "",
+          "iconUrl": "/StaticFiles/billers/kcca.png",
           "customerfield1": "PRN",
           "customerfield2": null,
           "paymentitems": [
@@ -1648,7 +1648,7 @@
           "id": "327",
           "categoryId": "7",
           "name": "Tugende Payments",
-          "iconUrl": "",
+          "iconUrl": "/StaticFiles/billers/tugende.png",
           "customerfield1": "Customer Number",
           "customerfield2": null,
           "paymentitems": [
@@ -1665,7 +1665,7 @@
           "id": "397",
           "categoryId": "7",
           "name": "URA  PAYMENTS",
-          "iconUrl": "",
+          "iconUrl": "/StaticFiles/billers/ura.png",
           "customerfield1": "PRN",
           "customerfield2": null,
           "paymentitems": [
@@ -1861,7 +1861,7 @@
           "id": "283",
           "categoryId": "11",
           "name": "MTN MOBILE MONEY",
-          "iconUrl": "/StaticFiles/billers/mtn-momo.jpg",
+          "iconUrl": "/StaticFiles/billers/mtn-momo.jpeg",
           "customerfield1": "Phone number",
           "customerfield2": null,
           "paymentitems": [

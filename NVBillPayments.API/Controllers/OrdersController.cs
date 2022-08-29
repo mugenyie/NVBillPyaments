@@ -167,13 +167,30 @@ namespace NVBillPayments.API.Controllers
                     TransactionStatus = transaction.TransactionStatusMessage,
                     CreatedOnUTC = transaction.CreatedOnUTC.ToString("yyyy-MM-dd HH:mm:ss"),
                     ProductValue = transaction.ProductValue,
-                    AmountCharged = transaction.AmountCharged
+                    AmountCharged = transaction.AmountCharged,
+                    IsExpired = transaction.IsExpired
                 };
                 return Ok(transactionVM);
             }
             else
             {
                 return new NotFoundObjectResult($"Transaction -{TransactionId}- not found");
+            }
+        }
+
+        [HttpGet]
+        [Route("MarkExpired")]
+        public IActionResult MarkExpired(string transactionId)
+        {
+            var transaction = _transactionService.GetById(transactionId);
+            if(transaction != null)
+            {
+                var result = _transactionService.MarkExpired(transaction);
+                return Ok("Success");
+            }
+            else
+            {
+                return Ok("Failed");
             }
         }
 
