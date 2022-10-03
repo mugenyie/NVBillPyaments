@@ -13,6 +13,7 @@ using NVBillPayments.ServiceProviders.Quickteller.Models;
 using NVBillPayments.Shared.Enums;
 using NVBillPayments.Shared.Helpers;
 using NVBillPayments.Shared.ViewModels.Product;
+using NVBillPayments.Shared.ViewModels.Transaction;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -394,6 +395,57 @@ namespace NVBillPayments.API.Controllers
             {
                 return new NotFoundObjectResult("Transaction Reference Not Found");
             }
+        }
+
+        [HttpPost]
+        [Route("EshopOrder")]
+        public async Task<IActionResult> MakeEshopOrderAsync(AddTransactionVM transactionRequest)
+        {
+            string paymentLink = "";
+            Transaction _transaction = new Transaction
+            {
+                AccountEmail = transactionRequest.UserAccount.Email,
+                AccountMSISDN = transactionRequest.UserAccount.PhoneNumber,
+                AccountName = transactionRequest.UserAccount.Name,
+                ProductId = transactionRequest.ProductId,
+                ProductDescription = transactionRequest.MetaData,
+                ServiceProviderId = Shared.Enums.ServiceProvider.NEWVISION.ToString(),
+                OrderReference = transactionRequest.MetaData,
+                PaymentReference = paymentLink,
+                CreatedOnUTC = DateTime.UtcNow,
+                AmountToCharge = transactionRequest.Amount,
+                SponsorMSISDN = transactionRequest?.SponsorId?.ValidatePhoneNumber()
+            };
+
+            var transaction = await _transactionService.SaveTransactionAsync(_transaction);
+
+            if (transaction != null)
+            {
+                if (transactionRequest.PaymentMethod.Equals("card"))
+                {
+                    paymentLink = await _transactionService.CreateCardPaymentLinkV2(_transaction, PaymentProvider.INTERSWITCH);
+                }
+                else if (transactionRequest.PaymentMethod.Equals("momo"))
+                {
+                    if (string.IsNullOrEmpty(_transaction.SponsorMSISDN))
+                        return new BadRequestObjectResult("SponsorId must not be empty");
+                    await _transactionService.InititateMobilePaymentCollectionAsync(_transaction);
+                }
+
+                string PaymentMessage = "";
+                switch (transactionRequest.PaymentMethod)
+                {
+                    case "momo":
+                        PaymentMessage += "Please follow prompts on your mobile to complete payment";
+                        break;
+                    case "card":
+                        PaymentMessage += "Complete payment with our secure card checkout";
+                        break;
+                }
+
+                return StatusCode(StatusCodes.Status200OK, new { Message = PaymentMessage, PaymentLink = paymentLink });
+            }
+            return Ok();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace NVBillPayments.Shared.Enums
         AIRTIME,
         BUNDLES,
         TICKETS,
-        UTILITY
+        UTILITY,
+        ESHOP
     }
 }

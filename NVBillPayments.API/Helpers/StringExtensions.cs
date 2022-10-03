@@ -11,18 +11,22 @@ namespace NVBillPayments.API.Helpers
         public static string ValidatePhoneNumber(this string _phoneNumber)
         {
             string phoneNumber = _phoneNumber;
-            try
+            if(!string.IsNullOrEmpty(phoneNumber))
             {
-                if (_phoneNumber.StartsWith("0"))
-                    phoneNumber = "256" + _phoneNumber.Substring(1);
-                else if (_phoneNumber.StartsWith("+"))
-                    phoneNumber = _phoneNumber.Substring(1);
+                try
+                {
+                    if (_phoneNumber.StartsWith("0"))
+                        phoneNumber = "256" + _phoneNumber.Substring(1);
+                    else if (_phoneNumber.StartsWith("+"))
+                        phoneNumber = _phoneNumber.Substring(1);
 
-                //if (phoneNumber.Length != 12)
-                //    throw new Exception("Invalid Phone Number");
-            }catch(Exception exp)
-            {
+                    //if (phoneNumber.Length != 12)
+                    //    throw new Exception("Invalid Phone Number");
+                }
+                catch (Exception exp)
+                {
 
+                }
             }
 
             return phoneNumber;

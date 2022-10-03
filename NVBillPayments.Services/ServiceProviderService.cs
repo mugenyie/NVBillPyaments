@@ -53,7 +53,7 @@ namespace NVBillPayments.Services
 
         public async Task ProcessOrderAsync(Transaction transaction, bool retry = false)
         {
-            if (transaction.PaymentStatus == PaymentStatus.SUCCESSFUL && transaction.OrderStatus != OrderStatus.SUCCESSFUL)
+            if (transaction.PaymentStatus == PaymentStatus.SUCCESSFUL)
             {
                 switch (transaction.ServiceProviderId)
                 {
