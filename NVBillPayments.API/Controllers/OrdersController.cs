@@ -146,6 +146,14 @@ namespace NVBillPayments.API.Controllers
         }
 
         [HttpGet]
+        [Route("full-detail/{TransactionId}")]
+        public IActionResult GetFullDetail(string TransactionId)
+        {
+            var transaction = _transactionService.GetById(TransactionId);
+            return Ok(transaction);
+        }
+
+        [HttpGet]
         [Route("{TransactionId}")]
         public IActionResult GetTRansactionInformation(string TransactionId)
         {
@@ -196,9 +204,9 @@ namespace NVBillPayments.API.Controllers
 
         [HttpGet]
         [Route("History")]
-        public IActionResult GetOrdersHistory(string email, string status, string category, int limit = 10, int offset = 0)
+        public IActionResult GetOrdersHistory(string email, string userId, string status, string category, int limit = 10, int offset = 0)
         {
-            var history = _transactionService.GetOrders(email, status, category, limit, offset);
+            var history = _transactionService.GetOrders(email, userId, status, category, limit, offset);
             return Ok(history);
         }
 

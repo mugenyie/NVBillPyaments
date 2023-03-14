@@ -28,6 +28,7 @@ namespace NVBillPayments.Core.Models
 
         [Key]
         public Guid TransactionId { get; set; }
+        public string ExternalUserId { get; set; }
 
         public string AccountMSISDN { get; set; }
         public string AccountName { get; set; }
@@ -81,5 +82,8 @@ namespace NVBillPayments.Core.Models
         public string MetaData { get; set; }
         public bool IsExpired { get; set; }
         public string QRCodeUrl { get; set; }
+        public string CallbackURL { get; set; }
+        public bool IsCallbackInvoked { get; set; }
+        public string CallbackResponse { get; set; }
     }
 }

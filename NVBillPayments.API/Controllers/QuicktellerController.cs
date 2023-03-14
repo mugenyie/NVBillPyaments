@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NVBillPayments.API.Helpers;
+using NVBillPayments.Core.Interfaces;
+using NVBillPayments.ServiceProviders.NewVision;
 using NVBillPayments.ServiceProviders.Quickteller;
 using NVBillPayments.ServiceProviders.Quickteller.Models;
 using NVBillPayments.Shared.ViewModels.Product;
@@ -16,10 +19,14 @@ namespace NVBillPayments.API.Controllers
     public class QuicktellerController : ControllerBase
     {
         private readonly IQuicktellerService _quicktellerService;
+        private readonly ICachingService _cachingService;
+        private readonly IEventTicketsManagementService _eventTicketsManagementService;
 
-        public QuicktellerController(IQuicktellerService quicktellerService)
+        public QuicktellerController(IQuicktellerService quicktellerService, ICachingService cachingService, IEventTicketsManagementService eventTicketsManagementService)
         {
             _quicktellerService = quicktellerService;
+            _cachingService = cachingService;
+            _eventTicketsManagementService = eventTicketsManagementService;
         }
 
         [HttpGet]
@@ -82,13 +89,17 @@ namespace NVBillPayments.API.Controllers
         [Route("JSON")]
         public async Task<IActionResult> FecthBillersJSON()
         {
+            string paymentitems_cache_key = "quickteller_billers";
+
+            string BaseUrl = $"{this.Request.Scheme}://{this.Request.Host}";
+
             List<QuicktellerCategoryVM> categoryVMs = new List<QuicktellerCategoryVM>();
             List<Biller> billers = new List<Biller>();
 
             var b = await _quicktellerService.GetBillersAsync();
             billers = b?.billers;
 
-            List<string> categoryIds = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ,"13", "14" };
+            List<string> categoryIds = new List<string> { "4", "5", "6", "7", "8" }; // remove 11, mobile money - 4, utl
             billers = billers.Where(b => categoryIds.Contains(b.categoryid)).ToList();
 
             List<QuicktellerBillerVM> billerVMs = new List<QuicktellerBillerVM>();
@@ -97,23 +108,37 @@ namespace NVBillPayments.API.Controllers
             {
                 try
                 {
+                    List<string> excludePaymentItems = new List<string> { "28310716", "4432361" };
+
+                    List<string> excludeBillers = new List<string> { "250" };
+
+                    if (excludeBillers.Contains(biller.billerid))
+                        continue;
+
                     var paymentItems = await _quicktellerService.GetBillerPaymentItemsAsync(biller.billerid);
                     List<QuicktellerPaymentItemVM> paymentitemsVm = new List<QuicktellerPaymentItemVM>();
-                    paymentItems.paymentitems?.ForEach(p => paymentitemsVm.Add(new QuicktellerPaymentItemVM
+                    paymentItems.paymentitems?.ForEach(p =>
                     {
-                        productCode = p.paymentCode,
-                        name = p.paymentitemname,
-                        amount = p.amount,
-                        isAmountFixed = p.isAmountFixed,
-                        billerId = p.billerid
-                    }));
+                        if (!excludePaymentItems.Contains(p.paymentCode))
+                        {
+                            paymentitemsVm.Add(new QuicktellerPaymentItemVM
+                            {
+                                productCode = p.paymentCode,
+                                name = p.paymentitemname,
+                                amount = p.amount,
+                                isAmountFixed = p.isAmountFixed,
+                                billerId = p.billerid
+                            });
+                        }
+                    });
 
                     billerVMs.Add(new QuicktellerBillerVM
                     {
                         id = biller.billerid,
                         categoryId = biller.categoryid,
+                        IconUrl = BaseUrl + BillerIconsHelper.GetBillerIcon(int.Parse(biller.billerid)),
                         name = biller.billername,
-                        customerfield1 = biller.customerfield1,
+                        customerfield1 = biller?.customerfield1 ?? "Account Number",
                         paymentitems = paymentitemsVm
                     });
                 }catch(Exception exp)
@@ -122,14 +147,17 @@ namespace NVBillPayments.API.Controllers
                 }
             }
 
+            
             categoryIds.ForEach(c =>
             {
                 try
                 {
+                    string categoryName = billers.Where(b => b.categoryid == c).First().categoryname;
                     categoryVMs.Add(new QuicktellerCategoryVM
                     {
                         id = c,
-                        name = billers.Where(b => b.categoryid == c).First().categoryname,
+                        name = categoryName,
+                        IconUrl = BaseUrl + BillerIconsHelper.GetCategoryIcon(int.Parse(c)),
                         description = billers.Where(b => b.categoryid == c).First().categorydescription,
                         billers = billerVMs.Where(x => x.categoryId == c).ToList()
                     });
@@ -139,16 +167,46 @@ namespace NVBillPayments.API.Controllers
                 }
             });
 
+            var eventTickets = await _eventTicketsManagementService.GetEventTicketsAsync(0,100);
+            if(eventTickets?.Count > 0)
+            {
+                QuicktellerCategoryVM eventData = new QuicktellerCategoryVM
+                {
+                    id = "",
+                    name = "",
+                    IconUrl = "",
+                    description = ""
+                };
+
+                List<QuicktellerBillerVM> ticketsData = new List<QuicktellerBillerVM>();
+
+                eventTickets.ForEach(eventTicket =>
+                {
+                    List<QuicktellerPaymentItemVM> ticketCategories = new List<QuicktellerPaymentItemVM>();
+                    eventTicket.ticket_categories?.ForEach(c => ticketCategories.Add(new QuicktellerPaymentItemVM
+                    {
+                        name = c.name,
+                        amount = c.amount.ToString()
+                    }));
+                    ticketsData.Add(new QuicktellerBillerVM
+                    {
+                        name = eventTicket.event_name,
+                        paymentitems = ticketCategories
+                    });
+                });
+                categoryVMs.Add(eventData);
+            }
 
             QuicktellerVM quickteller = new QuicktellerVM()
             {
                 count = categoryVMs.Count,
-                categorys = categoryVMs
+                categorys = categoryVMs.OrderBy(x => x.id).ToList()
             };
 
-            var serialised_object = JsonConvert.SerializeObject(quickteller);
-
-            //await _cachingService.Set(paymentitems_cache_key, quickteller, 3600);
+            if(quickteller.count > 0)
+            {
+                await _cachingService.Set(paymentitems_cache_key, quickteller, 86400 * 60); //store for 30 days
+            }
 
             return Ok(quickteller);
         }

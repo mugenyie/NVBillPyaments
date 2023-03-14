@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NVBillPayments.Core;
 
 namespace NVBillPayments.Core.Migrations
 {
     [DbContext(typeof(NVTransactionsDbContext))]
-    partial class NVTransactionsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221006213444_add_userId")]
+    partial class add_userId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,12 +207,6 @@ namespace NVBillPayments.Core.Migrations
                     b.Property<string>("BeneficiaryMSISDN")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CallbackResponse")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CallbackURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float>("Cashback")
                         .HasColumnType("real");
 
@@ -228,9 +224,6 @@ namespace NVBillPayments.Core.Migrations
 
                     b.Property<string>("ExternalUserId")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsCallbackInvoked")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsExpired")
                         .HasColumnType("bit");

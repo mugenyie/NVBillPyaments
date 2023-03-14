@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NVBillPayments.Core;
 
 namespace NVBillPayments.Core.Migrations
 {
     [DbContext(typeof(NVTransactionsDbContext))]
-    partial class NVTransactionsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230228043845_add-payment-gateway-v1")]
+    partial class addpaymentgatewayv1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

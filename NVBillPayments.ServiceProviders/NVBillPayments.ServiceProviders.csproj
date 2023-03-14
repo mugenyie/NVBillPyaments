@@ -14,8 +14,4 @@
     <ProjectReference Include="..\NVBillPayments.Core\NVBillPayments.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewVision\Models\" />
-  </ItemGroup>
-
 </Project>

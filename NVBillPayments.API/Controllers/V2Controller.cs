@@ -41,54 +41,57 @@ namespace NVBillPayments.API.Controllers
 
         [HttpGet]
         [Route("Categories")]
-        public IActionResult FetchCategories()
+        public async Task<IActionResult> FetchCategoriesAsync()
         {
-            string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
+            //string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
 
-            string quickteller_json_string = "";
+            //string quickteller_json_string = "";
 
-            using (var stream = System.IO.File.OpenRead(_billersFilePath))
-            {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    quickteller_json_string = reader.ReadToEnd();
-                }
-            }
+            //using (var stream = System.IO.File.OpenRead(_billersFilePath))
+            //{
+            //    using (StreamReader reader = new StreamReader(stream))
+            //    {
+            //        quickteller_json_string = reader.ReadToEnd();
+            //    }
+            //}
+            string paymentitems_cache_key = "quickteller_billers";
+            QuickTellerSimpleVM quickteller = await _cachingService.Get<QuickTellerSimpleVM>(paymentitems_cache_key);
 
-            QuickTellerSimpleVM quickteller = JsonConvert.DeserializeObject<QuickTellerSimpleVM>(quickteller_json_string);
-
-            string BaseUrl = $"{this.Request.Scheme}://{this.Request.Host}";
-            string IconPlaceHolder = "/StaticFiles/placeholder.jpg";
-            quickteller.categorys.ForEach(x =>
-            {
-                x.IconUrl = BaseUrl + x.IconUrl;
-                x.billers.ForEach(b =>
-                {
-                    string billerIcon = string.IsNullOrEmpty(b.IconUrl) ? IconPlaceHolder : b.IconUrl;
-                    b.IconUrl = BaseUrl + billerIcon;
-                });
-            });
+            //string BaseUrl = $"{this.Request.Scheme}://{this.Request.Host}";
+            //string IconPlaceHolder = "/StaticFiles/placeholder.jpg";
+            //quickteller.categorys.ForEach(x =>
+            //{
+            //    x.IconUrl = BaseUrl + x.IconUrl;
+            //    x.billers.ForEach(b =>
+            //    {
+            //        string billerIcon = string.IsNullOrEmpty(b.IconUrl) ? IconPlaceHolder : b.IconUrl;
+            //        b.IconUrl = BaseUrl + billerIcon;
+            //    });
+            //});
 
             return Ok(quickteller);
         }
 
         [HttpGet]
         [Route("Billers")]
-        public IActionResult FetchCategories(string billerId)
+        public async Task<IActionResult> FetchCategoriesAsync(string billerId)
         {
-            string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
+            //string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
 
-            string quickteller_json_string = "";
+            //string quickteller_json_string = "";
 
-            using (var stream = System.IO.File.OpenRead(_billersFilePath))
-            {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    quickteller_json_string = reader.ReadToEnd();
-                }
-            }
+            //using (var stream = System.IO.File.OpenRead(_billersFilePath))
+            //{
+            //    using (StreamReader reader = new StreamReader(stream))
+            //    {
+            //        quickteller_json_string = reader.ReadToEnd();
+            //    }
+            //}
 
-            QuicktellerVM quickteller = JsonConvert.DeserializeObject<QuicktellerVM>(quickteller_json_string);
+            //QuicktellerVM quickteller = JsonConvert.DeserializeObject<QuicktellerVM>(quickteller_json_string);
+
+            string paymentitems_cache_key = "quickteller_billers";
+            QuicktellerVM quickteller = await _cachingService.Get<QuicktellerVM>(paymentitems_cache_key);
 
             var billers = quickteller.categorys.SelectMany(x => x.billers).ToList();
 
@@ -117,25 +120,28 @@ namespace NVBillPayments.API.Controllers
         [Route("Product")]
         public IActionResult FetchProductDetail(string productCode)
         {
-            var paymentitem = GetProduct(productCode);
+            var paymentitem = GetProductAsync(productCode);
             return Ok(paymentitem);
         }
 
-        private QuicktellerPaymentItemVM GetProduct(string productCode)
+        private async Task<QuicktellerPaymentItemVM> GetProductAsync(string productCode)
         {
-            string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
+            //string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
 
-            string quickteller_json_string = "";
+            //string quickteller_json_string = "";
 
-            using (var stream = System.IO.File.OpenRead(_billersFilePath))
-            {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    quickteller_json_string = reader.ReadToEnd();
-                }
-            }
+            //using (var stream = System.IO.File.OpenRead(_billersFilePath))
+            //{
+            //    using (StreamReader reader = new StreamReader(stream))
+            //    {
+            //        quickteller_json_string = reader.ReadToEnd();
+            //    }
+            //}
 
-            QuicktellerVM quickteller = JsonConvert.DeserializeObject<QuicktellerVM>(quickteller_json_string);
+            //QuicktellerVM quickteller = JsonConvert.DeserializeObject<QuicktellerVM>(quickteller_json_string);
+
+            string paymentitems_cache_key = "quickteller_billers";
+            QuicktellerVM quickteller = await _cachingService.Get<QuicktellerVM>(paymentitems_cache_key);
 
             var billers = quickteller.categorys.SelectMany(x => x.billers);
 
@@ -160,33 +166,36 @@ namespace NVBillPayments.API.Controllers
 
         [HttpGet]
         [Route("DetailedCategories")]
-        public IActionResult FetchBillers()
+        public async Task<IActionResult> FetchBillersAsync()
         {
-            string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
+            //string _billersFilePath = Path.Combine(AppContext.BaseDirectory, @"StaticFiles", $"quickteller.json");
 
-            string quickteller_json_string = "";
+            //string quickteller_json_string = "";
 
-            using (var stream = System.IO.File.OpenRead(_billersFilePath))
-            {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    quickteller_json_string = reader.ReadToEnd();
-                }
-            }
+            //using (var stream = System.IO.File.OpenRead(_billersFilePath))
+            //{
+            //    using (StreamReader reader = new StreamReader(stream))
+            //    {
+            //        quickteller_json_string = reader.ReadToEnd();
+            //    }
+            //}
 
-            QuicktellerVM quickteller = JsonConvert.DeserializeObject<QuicktellerVM>(quickteller_json_string);
+            //QuicktellerVM quickteller = JsonConvert.DeserializeObject<QuicktellerVM>(quickteller_json_string);
 
-            string BaseUrl = $"{this.Request.Scheme}://{this.Request.Host}";
-            string IconPlaceHolder = "/StaticFiles/placeholder.jpg";
-            quickteller.categorys.ForEach(x =>
-            {
-                x.IconUrl = BaseUrl + x.IconUrl;
-                x.billers.ForEach(b =>
-                {
-                    string billerIcon = string.IsNullOrEmpty(b.IconUrl) ? IconPlaceHolder : b.IconUrl;
-                    b.IconUrl = BaseUrl + billerIcon;
-                });
-            });
+            string paymentitems_cache_key = "quickteller_billers";
+            QuicktellerVM quickteller = await _cachingService.Get<QuicktellerVM>(paymentitems_cache_key);
+
+            //string BaseUrl = $"{this.Request.Scheme}://{this.Request.Host}";
+            //string IconPlaceHolder = "/StaticFiles/placeholder.jpg";
+            //quickteller.categorys.ForEach(x =>
+            //{
+            //    x.IconUrl = BaseUrl + x.IconUrl;
+            //    x.billers.ForEach(b =>
+            //    {
+            //        string billerIcon = string.IsNullOrEmpty(b.IconUrl) ? IconPlaceHolder : b.IconUrl;
+            //        b.IconUrl = BaseUrl + billerIcon;
+            //    });
+            //});
 
             return Ok(quickteller);
         }
@@ -212,8 +221,8 @@ namespace NVBillPayments.API.Controllers
                 case "2": //vision tickets
                     {
                         int quantity = customerVM.quantity > 0 ? customerVM.quantity : 1;
-                        var paymentitem = GetProduct(customerVM.productCode);
-                        string transactionRef = "custom-" + Guid.NewGuid().ToString();
+                        var paymentitem = await GetProductAsync(customerVM.productCode);
+                        string transactionRef = "transRef-" + Guid.NewGuid().ToString();
                         ValidatedCustomerReponse customerReponse = new ValidatedCustomerReponse
                         {
                             amount = int.Parse(paymentitem.amount)*quantity,
@@ -255,10 +264,10 @@ namespace NVBillPayments.API.Controllers
                                 customerName = customerReponse?.customerName,
                                 paymentItem = customerReponse?.paymentItem,
                                 customerId = customerReponse?.customerId,
-                                amount = customerReponse.isAmountFixed == "1" ? int.Parse(CleanAmountString(customerReponse.amount.ToString())) : customerReponse.amount,
+                                amount = int.Parse(customerVM.amount), //customerReponse.isAmountFixed == "1" ? int.Parse(CleanAmountString(customerReponse.amount.ToString())) : 
                                 surcharge = customerReponse.surcharge,
                                 excise = customerReponse.excise,
-                                totalAmount = customerReponse.isAmountFixed == "1" ? int.Parse(CleanAmountString(customerReponse.amount.ToString())) : customerReponse.amount,
+                                totalAmount = int.Parse(customerVM.amount), //customerReponse.isAmountFixed == "1" ? int.Parse(CleanAmountString(customerReponse.amount.ToString())) : 
                                 transactionRef = customerReponse.transactionRef
                             };
 
@@ -315,7 +324,7 @@ namespace NVBillPayments.API.Controllers
 
             var transactionRequest = await _cachingService.Get<TransactionReferenceVM>($"transactionRef-{paymentRequest.TransactionReference.ToLower()}");
 
-            var paymentItem = GetProduct(transactionRequest.customerRequest.ProductCode);
+            var paymentItem = await GetProductAsync(transactionRequest.customerRequest.ProductCode);
 
             if (transactionRequest != null)
             {
@@ -333,6 +342,7 @@ namespace NVBillPayments.API.Controllers
                 //record transaction take note of service provider as QUICKTELLER
                 Transaction _transaction = new Transaction
                 {
+                    ExternalUserId = paymentRequest?.UserId,
                     AccountEmail = transactionRequest.customerRequest.Email,
                     AccountMSISDN = transactionRequest.customerRequest.PhoneNumber,
                     AccountName = transactionRequest.customerReponse.customerName,
@@ -404,9 +414,10 @@ namespace NVBillPayments.API.Controllers
             string paymentLink = "";
             Transaction _transaction = new Transaction
             {
-                AccountEmail = transactionRequest.UserAccount.Email,
-                AccountMSISDN = transactionRequest.UserAccount.PhoneNumber,
-                AccountName = transactionRequest.UserAccount.Name,
+                ExternalUserId = transactionRequest.UserAccount?.userId,
+                AccountEmail = transactionRequest.UserAccount?.Email,
+                AccountMSISDN = transactionRequest.UserAccount?.PhoneNumber,
+                AccountName = transactionRequest.UserAccount?.Name,
                 ProductId = transactionRequest.ProductId,
                 ProductDescription = transactionRequest.MetaData,
                 ServiceProviderId = Shared.Enums.ServiceProvider.NEWVISION.ToString(),

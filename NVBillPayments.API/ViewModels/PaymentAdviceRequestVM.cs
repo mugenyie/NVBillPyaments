@@ -10,5 +10,6 @@ namespace NVBillPayments.API.ViewModels
         public string TransactionReference { get; set; }
         public string PaymentMethod { get; set; } //card //momo
         public string SponsorId { get; set; }
+        public string UserId { get; set; }
     }
 }

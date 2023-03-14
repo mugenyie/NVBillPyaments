@@ -10,6 +10,7 @@ namespace NVBillPayments.Shared.Enums
         BUNDLES,
         TICKETS,
         UTILITY,
-        ESHOP
+        ESHOP,
+        VISION_PAYMENT_GATEWAY
     }
 }

@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NVBillPayments.PaymentProvi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NVBillPayments.WorkerService", "NVBillPayments.WorkerService\NVBillPayments.WorkerService.csproj", "{1CBE5A6F-CF77-45A5-9C44-C56B223132C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NVBillpayments.WebUI", "NVBillpayments.WebUI\NVBillpayments.WebUI.csproj", "{E4265C11-7909-4B78-A897-33F38F990656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NVBillpayments.WebUI", "NVBillpayments.WebUI\NVBillpayments.WebUI.csproj", "{E4265C11-7909-4B78-A897-33F38F990656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConfigs", "TestConfigs\TestConfigs.csproj", "{F6651202-48BB-4D67-A707-A6F32896F479}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{E4265C11-7909-4B78-A897-33F38F990656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4265C11-7909-4B78-A897-33F38F990656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4265C11-7909-4B78-A897-33F38F990656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6651202-48BB-4D67-A707-A6F32896F479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6651202-48BB-4D67-A707-A6F32896F479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6651202-48BB-4D67-A707-A6F32896F479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6651202-48BB-4D67-A707-A6F32896F479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

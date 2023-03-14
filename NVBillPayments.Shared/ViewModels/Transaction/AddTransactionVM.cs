@@ -22,6 +22,7 @@ namespace NVBillPayments.Shared.ViewModels.Transaction
 
     public class UserAccount
     {
+        public string userId { get; set; }
         public string PhoneNumber { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

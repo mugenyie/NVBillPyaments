@@ -59,10 +59,7 @@ namespace NVBillPayments.Services
             IPegasusService pegasusService,
             IInterswitchService interswitchService)
         {
-            factory = new ConnectionFactory
-            {
-                Uri = new Uri(ConfigurationConstants.RABBITMQ_URI)
-            };
+            factory = new ConnectionFactory { Uri = new Uri(ConfigurationConstants.RABBITMQ_URI) };
             connection = factory.CreateConnection();
             channel = connection.CreateModel();
 
@@ -495,14 +492,22 @@ namespace NVBillPayments.Services
             return _transactionsRepository.GetById(new Guid(transactionId));
         }
 
-        public List<SimpleTransactionsVM> GetOrders(string email, string status, string category, int limit = 0, int offset = 10)
+        public List<SimpleTransactionsVM> GetOrders(string email, string userId, string status, string category, int limit = 0, int offset = 10)
         {
             var transactionsVm = new List<SimpleTransactionsVM>();
 
-            var transactions = _transactionsRepository.Query()
-                .Where(x => email.Equals(x.AccountEmail));
+            IQueryable<Transaction> transactions = null;
 
-            if (!string.IsNullOrEmpty(status))
+            if(!string.IsNullOrEmpty(email))
+            {
+                transactions = _transactionsRepository.Query().Where(x => email.Equals(x.AccountEmail));
+            }
+            else if (!string.IsNullOrEmpty(userId))
+            {
+                transactions = _transactionsRepository.Query().Where(x => userId.Equals(x.ExternalUserId));
+            }
+
+            if (transactions?.Count() > 0 && !string.IsNullOrEmpty(status))
             {
                 if(status.Equals("successful",StringComparison.OrdinalIgnoreCase))
                     transactions = transactions.Where(x => x.TransactionStatus == TransactionStatus.SUCCESSFUL);
@@ -510,13 +515,13 @@ namespace NVBillPayments.Services
                     transactions = transactions.Where(x => x.TransactionStatus == TransactionStatus.FAILED);
                 else if (status.Equals("pending", StringComparison.OrdinalIgnoreCase))
                     transactions = transactions.Where(x => x.TransactionStatus == TransactionStatus.PENDING);
+
+                if (!string.IsNullOrEmpty(category))
+                    transactions = transactions.Where(x => x.SystemCategory.Equals(category.ToUpper()));
             }
 
-            if (!string.IsNullOrEmpty(category))
-                transactions = transactions.Where(x => x.SystemCategory.Equals(category.ToUpper()));
-
-            transactions = transactions.OrderByDescending(x => x.CreatedOnUTC).Skip(offset).Take(limit);
-            transactionsVm = TransactionHelper.ToSimpleListView(transactions.ToList());
+            transactions = transactions?.OrderByDescending(x => x.CreatedOnUTC).Skip(offset).Take(limit);
+            transactionsVm = TransactionHelper.ToSimpleListView(transactions?.ToList());
 
             return transactionsVm;
         }

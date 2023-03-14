@@ -21,7 +21,7 @@ namespace NVBillPayments.Core.Interfaces
         Task ProcessFailedPayment(string transactionId, string paymentProviderId, string paymentMetaData, string statusMessage, string technicalStatusMessage = "");
         Task ProcessOrderCallbackAsync(string transactionId, OrderStatus orderStatus, string serviceProviderMetaData);
         Task InititateMobilePaymentCollectionAsync(Transaction transaction);
-        List<SimpleTransactionsVM> GetOrders(string email, string status, string category, int limit, int offset);
+        List<SimpleTransactionsVM> GetOrders(string email,string userId, string status, string category, int limit, int offset);
         List<SimpleTransactionsVM> GetRecommendedOrders(string email, string category, bool singlePerCategory = false, int limit=20, int offset=0);
         Task<object> GetThirdpartyTransactionStatusAsync(string transactionId);
         Task<string> CreateCardPaymentLink(AddTransactionVM transaction, PaymentProvider paymentProvider = PaymentProvider.FLUTTERWAVE);

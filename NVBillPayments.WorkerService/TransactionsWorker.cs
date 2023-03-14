@@ -40,7 +40,7 @@ namespace NVBillPayments.WorkerService
         {
             _connectionFactory = new ConnectionFactory
             {
-                Uri = new Uri(RabbitMQURI),
+                Uri = new Uri(ConfigurationConstants.RABBITMQ_URI),
                 DispatchConsumersAsync = true
             };
             _connection = _connectionFactory.CreateConnection();

@@ -75,6 +75,8 @@ namespace NVBillPayments.API
             services.AddSingleton<IAirtelService, AirtelService>();
             services.AddSingleton<INewVisionService, NewVisionService>();
 
+            services.AddSingleton<IEventTicketsManagementService, EventTicketsManagementService>();
+
             services.AddDistributedRedisCache(option =>
             {
                 option.Configuration = ConfigurationConstants.REDIS_URI;
@@ -85,7 +87,7 @@ namespace NVBillPayments.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, NVTransactionsDbContext dbContext)
         {
             // migrate any database changes on startup (includes initial db creation)
-            dbContext.Database.Migrate();
+            //dbContext.Database.Migrate();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();

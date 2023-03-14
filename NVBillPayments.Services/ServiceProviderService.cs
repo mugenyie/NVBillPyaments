@@ -15,9 +15,11 @@ using NVBillPayments.ServiceProviders.Quickteller.Models;
 using NVBillPayments.Services.Helpers;
 using NVBillPayments.Shared.Enums;
 using NVBillPayments.Shared.Helpers;
+using NVBillPayments.Shared.ViewModels.Payment;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +27,7 @@ namespace NVBillPayments.Services
 {
     public class ServiceProviderService : IServiceProviderService
     {
+        private static readonly HttpClient httpClient = new HttpClient();
         private readonly IQRCodeService _qrCodeService;
         private readonly IQuicktellerService _quicktellerService;
         private readonly INewVisionService _newvisionService;
@@ -114,7 +117,36 @@ namespace NVBillPayments.Services
                         }
                     case "NEWVISION":
                         {
-                            await RecordSuccesfulTransactionAsync(transaction);
+                            if (!string.IsNullOrEmpty(transaction.CallbackURL))
+                            {
+                                //make post request to confirm payment, if ok , record succesful, log callback response
+                                VPGCallback_V1 callbackReponse = new VPGCallback_V1
+                                {
+                                    CustomerId = transaction.ExternalUserId,
+                                    Message = "Payment Successful",
+                                    PaymentStatusCode = "0",
+                                    ProductCode = transaction.ProductId,
+                                    MetaData = transaction.MetaData,
+                                    TransactionReference = transaction.TransactionId.ToString()
+                                };
+
+                                HttpContent body = new StringContent(JsonConvert.SerializeObject(callbackReponse), Encoding.UTF8, "application/json");
+
+                                var response = await httpClient.PostAsync(transaction.CallbackURL, body);
+                                //var responseString = await response.Content.ReadAsStringAsync();
+                                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                                {
+                                    await RecordSuccesfulTransactionAsync(transaction, "OK");
+                                }
+                                else
+                                {
+                                    await RecordCallbackReponse(transaction, JsonConvert.SerializeObject(response));
+                                }
+                            }
+                            else
+                            {
+                                await RecordSuccesfulTransactionAsync(transaction);
+                            }
                             return;
                         }
                     default:
@@ -123,7 +155,15 @@ namespace NVBillPayments.Services
             }
         }
 
-        private async Task RecordSuccesfulTransactionAsync(Transaction transaction)
+        private async Task RecordCallbackReponse(Transaction transaction, string clientCallbackReponse = "")
+        {
+            transaction.IsCallbackInvoked = true;
+            transaction.CallbackResponse = clientCallbackReponse;
+            _transactionsRepository.Update(transaction);
+            await _transactionsRepository.SaveChangesAsync();
+        }
+
+        private async Task RecordSuccesfulTransactionAsync(Transaction transaction, string clientCallbackReponse="")
         {
             var qrEmailTemplate = await _notificationService.GenerateTransactionEmailTemplateAsync(transaction);
             string customerMessage = $"{transaction.ProductDescription} for {transaction.BeneficiaryMSISDN}, {transaction.CurrencyCode} {Math.Round(transaction.AmountCharged,0)}";
@@ -135,6 +175,13 @@ namespace NVBillPayments.Services
             transaction.ModifiedBy = "Orders Processor";
             transaction.ModifiedOnUTC = DateTime.UtcNow;
             transaction.QRCodeUrl = qrEmailTemplate.Item1;
+
+            if (!string.IsNullOrEmpty(clientCallbackReponse))
+            {
+                transaction.CallbackResponse = clientCallbackReponse;
+                transaction.IsCallbackInvoked = true;
+            }
+
             _transactionsRepository.Update(transaction);
             await _transactionsRepository.SaveChangesAsync();
             _notificationService.SendInAppAsync($"Successful Transaction - {transaction.ProductDescription}", transaction.AccountEmail, customerMessage);
@@ -143,6 +190,7 @@ namespace NVBillPayments.Services
 
         private async Task RecordFailedTransaction(Transaction transaction, string TechnicalErrorMessage, string CustomerFriendlyMessage)
         {
+            string emailMsg = $"<p>Failed Transaction - {transaction.ProductDescription}</p> <p>Reason: {CustomerFriendlyMessage}</p>";
             transaction.TechnicalStatusMessage = TechnicalErrorMessage;
             transaction.TransactionStatusMessage = CustomerFriendlyMessage;
             transaction.OrderStatus = OrderStatus.FAILED;
@@ -152,6 +200,8 @@ namespace NVBillPayments.Services
             transaction.ModifiedOnUTC = DateTime.UtcNow;
             _transactionsRepository.Update(transaction);
             await _transactionsRepository.SaveChangesAsync();
+            _notificationService.SendInAppAsync($"Failed Transaction - {transaction.ProductDescription}", transaction.AccountEmail, CustomerFriendlyMessage);
+            _notificationService.SendEmailAsync($"Failed Transaction - {transaction.ProductDescription}", transaction.AccountEmail, emailMsg, transaction.AccountName);
         }
 
         #region Quickteller
@@ -167,9 +217,10 @@ namespace NVBillPayments.Services
                 switch (transactionStatus.responseCode)
                 {
                     case "9000":
-                        goto SUCCESS;
-                    case "90009":
-                        goto FINISH;
+                        {
+                            await RecordSuccesfulTransactionAsync(transaction);
+                            return;
+                        }
                 }
 
                 paymentAdvice.RequestReference = Guid.NewGuid().ToString("N").ToLower().Substring(0, 12);
@@ -212,16 +263,13 @@ namespace NVBillPayments.Services
                 transaction.ServiceProviderResponseMetaData = response.Content;
 
                 if (response.Data.responseCode.Equals("9000"))
-                    goto SUCCESS;
-                //else
-                //{
-                //    await RecordFailedTransaction(transaction, response.Data.responseMessage, "Error activating service, contact help desk");
-                //}
+                    await RecordSuccesfulTransactionAsync(transaction);
+                else
+                {
+                    await RecordFailedTransaction(transaction, response.Data.responseMessage, "Error activating product, contact help desk");
+                }
             }
 
-            SUCCESS:
-            await RecordSuccesfulTransactionAsync(transaction);
-            FINISH:
             return;
         }
         #endregion Quickteller

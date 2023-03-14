@@ -29,6 +29,5 @@
 
   <ItemGroup>
     <Folder Include="StaticFiles\categorys\" />
-    <Folder Include="StaticFiles\billers\" />
   </ItemGroup>
 </Project>

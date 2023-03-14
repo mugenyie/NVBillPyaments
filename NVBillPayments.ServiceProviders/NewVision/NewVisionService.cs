@@ -11,13 +11,11 @@ namespace NVBillPayments.ServiceProviders.NewVision
 {
     public class NewVisionService : INewVisionService
     {
-        private readonly IServiceProvider _services;
         private IRestClient _restClient;
         private IRestRequest _restRequest;
 
-        public NewVisionService(IServiceProvider services)
+        public NewVisionService()
         {
-            _services = services;
             _restClient = new RestClient("https://transactions-api.newvisionapp.com");
         }
 
