@@ -21,7 +21,7 @@ namespace NVBillPayments.ServiceProviders.NewVision
         {
             _restRequest = new RestRequest($"EventTickets?offset={offset}&limit={limit}");
             var result = await _restClient.ExecuteAsync<EventTicketData>(_restRequest);
-            return result.Data?.EventTickets;
+            return result.Data?.data;
         }
 
         public async Task<bool> GetTicketApproverAsync(string email, string password)
