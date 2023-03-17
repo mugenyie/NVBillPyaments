@@ -152,7 +152,7 @@ namespace NVBillPayments.API.Controllers
                             billerId = billerId,
                             isAmountFixed = true,
                             name = c.name,
-                            amount = c.amount.ToString()
+                            amount = $"{c.amount}00"
                         }));
 
                         //add tickets along with categories
